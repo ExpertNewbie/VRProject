@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1366
     height: 685
   m_ShowMode: 4
-  m_Title: "\uACC4\uCE35 \uAD6C\uC870"
+  m_Title: "\uAC8C\uC784"
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_MinSize: {x: 708, y: 492}
   m_MaxSize: {x: 18003, y: 14042}
   vertical: 0
-  controlID: 117
+  controlID: 112
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_MinSize: {x: 201, y: 421}
   m_MaxSize: {x: 4001, y: 8021}
   vertical: 1
-  controlID: 126
+  controlID: 23
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -195,8 +195,8 @@ MonoBehaviour:
     y: 312
     width: 671
     height: 323
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 54
+  controlID: 69
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -247,8 +247,8 @@ MonoBehaviour:
     y: 0
     width: 302
     height: 331
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -432,9 +432,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.6822286, y: 1.2655666, z: 0.03395486}
+    m_Target: {x: -0.44460234, y: 1.1847026, z: -0.30189046}
     speed: 2
-    m_Value: {x: -0.6822286, y: 1.2655666, z: 0.03395486}
+    m_Value: {x: -0.44460234, y: 1.1847026, z: -0.30189046}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -481,9 +481,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.008587527, y: 0.9627561, z: -0.030624157, w: -0.2685949}
+    m_Target: {x: 0.07354643, y: 0.07260185, z: -0.0054082014, w: 0.9946588}
     speed: 2
-    m_Value: {x: -0.008587294, y: 0.96273005, z: -0.030623328, w: -0.26858762}
+    m_Value: {x: 0.07354439, y: 0.07259983, z: -0.005408051, w: 0.99463123}
   m_Size:
     m_Target: 0.6635002
     speed: 2
@@ -626,23 +626,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 940b0000
       m_LastClickedID: 0
-      m_ExpandedIDs: 68bafffffedffffffeeaffff8aebffffbaf9ffff52fbffffae4d0000c44d00004e6d0000
+      m_ExpandedIDs: f4f2ffff4af6ffff4ef6ffff5af6ffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: unitychan
-        m_OriginalName: unitychan
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -17816
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 10}
       m_SearchString: 
@@ -690,22 +690,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/ImportAssets
+    - Assets/Script
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/ImportAssets
+  - Assets/Script
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\CODE\cndtjs\GitHub\VRProject\MyPortfolioVR
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 25}
-    m_SelectedIDs: c44b0000
-    m_LastClickedID: 19396
-    m_ExpandedIDs: 00000000ee4a0000f04a0000f44a0000f64a0000f84a0000fc4a0000c44b0000ee4b0000784c000000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 325a0000
+    m_LastClickedID: 23090
+    m_ExpandedIDs: 00000000c6590000c8590000ca590000cc590000ce590000d0590000d259000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -733,7 +733,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ee4a0000f04a0000f24a0000f44a0000f64a0000f84a0000fa4a0000fc4a0000
+    m_ExpandedIDs: 00000000c6590000c8590000ca590000cc590000ce590000d0590000d2590000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -764,18 +764,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: 526e00004a6e0000426a0000144f0000dc510000c240000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: unity-chan!
-      m_OriginalName: unity-chan!
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 19438
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:
