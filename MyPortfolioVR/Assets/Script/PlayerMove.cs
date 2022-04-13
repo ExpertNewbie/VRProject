@@ -15,7 +15,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        anim = GetComponentInChildren<Animator>();
+        // anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -23,20 +23,20 @@ public class PlayerMove : MonoBehaviour
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-        anim.SetFloat("Speed", v);
+        // anim.SetFloat("Speed", v);
         Vector3 dir = new Vector3(h, 0, v);
         dir = Camera.main.transform.TransformDirection(dir);
         yVelocity += gravity * Time.deltaTime;
         if(controller.isGrounded)
         {
             yVelocity = 0;
-            anim.SetBool("Jetpack", false);
+            // anim.SetBool("Jetpack", false);
         }
         //////////////////////////////////////////////////////////////////// JetPack Use
         if(ARAVRInput.Get(ARAVRInput.Button.HandTrigger))
         {
             yVelocity += (jetFloat + -gravity) * Time.deltaTime;
-            anim.SetBool("Jetpack", true);
+            // anim.SetBool("Jetpack", true);
         }
         //////////////////////////////////////////////////////////////////// JetPack Use END
         dir.y = yVelocity;

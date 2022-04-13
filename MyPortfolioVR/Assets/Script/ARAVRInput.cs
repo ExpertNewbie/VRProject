@@ -13,6 +13,7 @@ public static class ARAVRInput
         Fire2,
         Fire3,
         Jump,
+        StartMenu
     }
 #endif
     public enum Button
@@ -22,13 +23,15 @@ public static class ARAVRInput
         Two = ButtonTarget.Jump,
         Thumbstick = ButtonTarget.Fire1,
         IndexTrigger = ButtonTarget.Fire3,
-        HandTrigger = ButtonTarget.Fire2
+        HandTrigger = ButtonTarget.Fire2,
+        StartMenu = ButtonTarget.StartMenu
 #elif Oculus
         One = OVRInput.Button.One,
         Two = OVRInput.Button.Two,
-        Thumbstick = OVRInput.Button.PrimaryHandTrigger,
+        Thumbstick = OVRInput.Button.PrimaryThumbstick,
         IndexTrigger = OVRInput.Button.PrimaryIndexTrigger,
         HandTrigger = OVRInput.Button.PrimaryHandTrigger,
+        StartMenu = OVRInput.Button.Start
 #endif
     }
     public enum Controller
