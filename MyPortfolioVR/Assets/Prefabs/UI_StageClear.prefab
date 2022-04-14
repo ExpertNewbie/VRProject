@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8f91da64197524ea8c5cf29dc887d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiDialog: {fileID: 7746701637512171927, guid: 020431bf2617b134895f9ec5cfc02a1a, type: 3}
+  isDialogOpen: 0
   uiUpgrade: {fileID: 9017738535906414527, guid: 0e426855a2bb2d344b1f62bfd3fef3b1, type: 3}
   uiUP: 130
   uiDistance: 270
