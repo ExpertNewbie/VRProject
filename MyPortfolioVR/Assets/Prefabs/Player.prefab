@@ -110,8 +110,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI: {fileID: 7710899338293187739, guid: ff3b14fcc8270b844af7fef23b36ea9a, type: 3}
+  player: {fileID: 7686779463254618160}
   uiUP: 150
-  uiDistance: 150
+  uiDistance: 300
+  x: -20
 --- !u!1 &6112033157736696851
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,6 +281,14 @@ PrefabInstance:
     - target: {fileID: 6490858619281952351, guid: 3a623accffed0cd44a7d70f5190b03f7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912804740342756276, guid: 3a623accffed0cd44a7d70f5190b03f7, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 7912804740342756276, guid: 3a623accffed0cd44a7d70f5190b03f7, type: 3}
+      propertyPath: m_Name
+      value: RightHandTarget
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a623accffed0cd44a7d70f5190b03f7, type: 3}

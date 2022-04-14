@@ -8,8 +8,7 @@ public class UIActivator : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] float uiUP = 150.0f;
     [SerializeField] float uiDistance = 300.0f;
-    [SerializeField] float x = -20.0f;
-    private bool isOpen = false;
+    public bool isOpen = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +26,8 @@ public class UIActivator : MonoBehaviour
                 Vector3 uiPosition = transform.position
                 + (transform.forward * uiDistance) + (transform.up * uiUP);
                 Vector3 uiV3 = player.rotation.eulerAngles;
-                GameObject clone = Instantiate(UI, uiPosition, Quaternion.Euler(x, uiV3.y, 0));
+                Debug.Log(uiV3.y);
+                GameObject clone = Instantiate(UI, uiPosition, Quaternion.Euler(0, uiV3.y, 0));
                 ButtonController bc = clone.GetComponent<ButtonController>();
                 bc.activator = this;
             }
