@@ -109,11 +109,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c979749d18589dd48bd08eb01dda2577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UI: {fileID: 7710899338293187739, guid: ff3b14fcc8270b844af7fef23b36ea9a, type: 3}
+  UI: {fileID: 4897543308175246422, guid: ff3b14fcc8270b844af7fef23b36ea9a, type: 3}
   player: {fileID: 7686779463254618160}
   uiUP: 150
   uiDistance: 300
-  x: -20
+  isOpen: 0
 --- !u!1 &6112033157736696851
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +127,8 @@ GameObject:
   - component: {fileID: 207613209}
   - component: {fileID: 207613208}
   - component: {fileID: 207613212}
-  m_Layer: 0
+  - component: {fileID: 343513150}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +164,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!143 &207613209
 CharacterController:
@@ -195,8 +196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74aae25ad62b6e649abba3becb846195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 1
-  runSpeed: 3
+  walkSpeed: 2
+  runSpeed: 4
   gravity: -10
   jetFloat: 5
 --- !u!114 &207613212
@@ -211,6 +212,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bc8582000db0745ac7e2fc666028cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &343513150
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6112033157736696851}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 1.6
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!1001 &1929482166865504585
 PrefabInstance:
   m_ObjectHideFlags: 0

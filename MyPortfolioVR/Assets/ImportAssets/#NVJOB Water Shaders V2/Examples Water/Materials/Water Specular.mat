@@ -236,7 +236,7 @@ Material:
     - _SaturationRef: 0.5
     - _Shininess: 0.6
     - _SmoothnessTextureChannel: 0
-    - _SoftFactor: 0.09
+    - _SoftFactor: 0.385
     - _SpecularHighlights: 1
     - _Speed: 0.5
     - _SpeedX: 0.1
@@ -264,3 +264,4 @@ Material:
     - _ReflectionColor: {r: 0.22749412, g: 0.23070937, b: 0.23921569, a: 0.5}
     - _SpecColor: {r: 0.29411766, g: 0.33075517, b: 0.4117647, a: 1}
     - _SpecularColor: {r: 0.5808823, g: 0.5808823, b: 0.5808823, a: 1}
+  m_BuildTextureStacks: []
