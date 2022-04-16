@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class GunManager : MonoBehaviour
 {
+    List<GameObject> effectList = new List<GameObject>();
     [SerializeField] GameObject gunRight;
     [SerializeField] GameObject gunLeft;
-    [SerializeField] ParticleSystem waterSplash;
+    [SerializeField] GameObject waterHitSplash;
     GunController controllerRight;
     GunController controllerLeft;
     // Start is called before the first frame update
@@ -14,6 +15,13 @@ public class GunManager : MonoBehaviour
     {
         controllerRight=gunRight.GetComponent<GunController>();
         controllerLeft = gunLeft.GetComponent<GunController>();
+        for(int i=0; i<20; i++)
+        {
+            GameObject go = Instantiate(waterHitSplash);
+            go.transform.position = Vector3.down * 10;
+            go.SetActive(false);
+            effectList.Add(go);
+        }
     }
 
     // Update is called once per frame
@@ -52,7 +60,18 @@ Debug.Log("ARAVRInput.Controller.LTouch");
         if(Physics.Raycast(ray, out hitInfo, 20.0f, ~layerMask))
         {
 Debug.Log("Raycast");
-            Instantiate(waterSplash, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+            // GameObject go = Instantiate(waterSplash, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+            if(effectList.Count > 0)
+            {
+                GameObject go = effectList[0];
+                effectList.RemoveAt(0);
+                go.transform.position = hitInfo.point;
+                go.transform.rotation = Quaternion.LookRotation(hitInfo.normal);
+                go.SetActive(true);
+                ParticleSystem effect = go.GetComponentInChildren<ParticleSystem>();
+                effect.Play();
+                effectList.Add(go);
+            }
         }
     }
 }

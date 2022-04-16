@@ -533,6 +533,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 207613212, guid: 957d6efdfbe8ae646875475ab245e3ad, type: 3}
+      propertyPath: waterSplash
+      value: 
+      objectReference: {fileID: 3735201783879448230, guid: 00ee9a8256d17724997a369c7066843e, type: 3}
     - target: {fileID: 343513150, guid: 957d6efdfbe8ae646875475ab245e3ad, type: 3}
       propertyPath: m_Enabled
       value: 1
