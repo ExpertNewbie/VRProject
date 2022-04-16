@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class RubberDuckBase : MonoBehaviour
 {
     float hp = 10.0f;
-    float run = 1.5f; // 데이터에서 끌어와야함
     RubberDuckMove moveAgent;
     // Start is called before the first frame update
     void Start()
@@ -28,6 +27,6 @@ public class RubberDuckBase : MonoBehaviour
         //     sound.play();
         // }
         damaged = true;
-        moveAgent.GotoRandomPoint(damaged, run);
+        moveAgent.GotoRandomPoint(damaged);
     }
 }
