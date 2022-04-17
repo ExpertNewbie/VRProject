@@ -46,6 +46,7 @@ MonoBehaviour:
   gunPoint: {fileID: 5060180073558598425}
   textCurrentQuantity: {fileID: 5239209802618905659}
   waterAttackSplash: {fileID: 3735201783879448230, guid: 00ee9a8256d17724997a369c7066843e, type: 3}
+  waterHitSplash: {fileID: 4336692632988145871, guid: 3d519f06fe866cc4d9bdaf07adc13697, type: 3}
   effectPoolCount: 8
   recoveryQuantity: 0
   spendQuantity: 5
