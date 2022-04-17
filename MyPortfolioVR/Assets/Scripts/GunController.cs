@@ -15,7 +15,8 @@ public class GunController : MonoBehaviour
     float reshootCurrentTime = 0.0f;
     float reshootLimitTime = 0.1f;
     float currentQuantity;
-    public float recoveryQuantity;
+    float attackPower = 6.0f;
+    public float recoveryQuantity = 5/3;
     public float spendQuantity = 5.0f;
     public bool isInWater = false;
     public Transform aim;
@@ -29,8 +30,8 @@ public class GunController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // recoveryQuantity = ???
-        // spendQuantity = ???
+        // recoveryQuantity = ???    Import Save Data
+        // spendQuantity = ???       Import Save Data
         currentQuantity = 100.0f;
         for(int i=0; i<effectPoolCount; i++)
         {
@@ -47,7 +48,6 @@ public class GunController : MonoBehaviour
             waterHitSplashList.Add(go);
         }
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -55,7 +55,6 @@ public class GunController : MonoBehaviour
         {
             Recovery();
         }
-        DrawAimPoint();
         UpdateQuantityText();
         reshootCurrentTime = Mathf.Clamp(reshootCurrentTime + Time.deltaTime, 0f, 1.0f);
     }
@@ -100,6 +99,16 @@ public class GunController : MonoBehaviour
             ParticleSystem effect = go.GetComponentInChildren<ParticleSystem>();
             effect.Play();
             waterHitSplashList.Add(go);
+            /////////////////////////////////////////////////////////// RubberDuck Damaged
+            if(hitInfo.transform.name.Contains("Duck"))
+            {
+                RubberDuckBase duck = hitInfo.transform.GetComponent<RubberDuckBase>();
+                if(duck)
+                {
+                    duck.OnDamaged(attackPower);
+                }
+            }
+            /////////////////////////////////////////////////////////// RubberDuck Damaged
         }
     }
     void DrawAimPoint()
