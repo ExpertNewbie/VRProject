@@ -8,6 +8,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] float runSpeed = 4.0f;
     [SerializeField] float gravity = -10.0f;
     [SerializeField] float jetFloat = 5.0f;
+    [SerializeField] Transform aim;
     Animator anim;
     float yVelocity = 0;
     CharacterController controller;
@@ -21,6 +22,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ARAVRInput.DrawCrosshair(aim);
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         // anim.SetFloat("Speed", v);
