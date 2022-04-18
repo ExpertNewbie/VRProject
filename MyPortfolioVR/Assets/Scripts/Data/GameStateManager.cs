@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
 {
-    [SerializeField] SaveDataManager saveDataManager;        // In Game Data
-    [SerializeField] SettingDataManager settingDataManager;  // Game Setting Data
+    SaveDataManager saveDataManager;        // In Game Data
+    SettingDataManager settingDataManager;  // Game Setting Data
     SaveData saveData;
     SettingData settingData;
     // Start is called before the first frame update
     void Start()
     {
-        saveDataManager = new SaveDataManager();
-        settingDataManager = new SettingDataManager();
-        saveData = saveDataManager.LoadData();
-        settingData = settingDataManager.LoadData();
+        // saveDataManager = new SaveDataManager();
+        // settingDataManager = new SettingDataManager();
+        // saveData = saveDataManager.LoadData();
+        // settingData = settingDataManager.LoadData();
     }
     // Update is called once per frame
     void Update()
@@ -23,8 +23,8 @@ public class GameStateManager : MonoBehaviour
     }
     void OnDestroy()
     {
-        saveDataManager.SaveData(saveData);
-        settingDataManager.SaveData(settingData);
+        // saveDataManager.SaveData(saveData);
+        // settingDataManager.SaveData(settingData);
     }
     void SetSaveData()
     {
