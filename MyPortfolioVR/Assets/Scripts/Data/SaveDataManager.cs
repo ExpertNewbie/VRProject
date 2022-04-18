@@ -6,24 +6,23 @@ using UnityEngine;
 
 public class SaveDataManager : AbsDataManager<SaveData>
 {
-    public static SaveData data = new SaveData();
     public int PlayerNumber = 0;
-    void Start()
+    public SaveDataManager()
     {
-        data = LoadData();
+        LoadData();
     }
     public override SaveData LoadData()
     {
         string path = Application.persistentDataPath + $"/save_data_{PlayerNumber}.dat";
-        SaveData datas = new SaveData(true);
+        SaveData data = new SaveData(true);
         if(File.Exists(path))
         {
             FileStream fileStream = File.OpenRead(path);
             BinaryFormatter bf = new BinaryFormatter();
-            datas = (SaveData) bf.Deserialize(fileStream);
+            data = (SaveData) bf.Deserialize(fileStream);
             fileStream.Close();
         }
-        return datas;
+        return data;
     }
     public override void SaveData()
     {
@@ -43,11 +42,6 @@ public class SaveDataManager : AbsDataManager<SaveData>
         }
         BinaryFormatter bf = new BinaryFormatter();
         bf.Serialize(fileStream, inputData);
-        data = inputData;
         fileStream.Close();
-    }
-    void OnDestroy()
-    {
-        SaveData(data);
     }
 }

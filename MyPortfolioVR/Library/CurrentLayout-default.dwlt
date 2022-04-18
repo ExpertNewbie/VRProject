@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1366
     height: 685
   m_ShowMode: 4
-  m_Title: "\uAC8C\uC784"
+  m_Title: "\uACC4\uCE35 \uAD6C\uC870"
   m_RootView: {fileID: 4}
   m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
@@ -171,10 +171,10 @@ MonoBehaviour:
     y: 30
     width: 1366
     height: 635
-  m_MinSize: {x: 708, y: 492}
+  m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 37
+  controlID: 179
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -196,8 +196,8 @@ MonoBehaviour:
     y: 0
     width: 685
     height: 635
-  m_MinSize: {x: 200, y: 321}
-  m_MaxSize: {x: 4001, y: 8021}
+  m_MinSize: {x: 201, y: 442}
+  m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
   controlID: 38
 --- !u!114 &9
@@ -219,8 +219,8 @@ MonoBehaviour:
     y: 0
     width: 685
     height: 307
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: GameView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -246,14 +246,14 @@ MonoBehaviour:
     y: 307
     width: 685
     height: 328
-  m_MinSize: {x: 101, y: 121}
+  m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 16}
+  m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
   - {fileID: 16}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -343,9 +343,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -21, y: 1, z: 10}
+    m_Target: {x: 0.1528511, y: 0.61114806, z: 1.1783913}
     speed: 2
-    m_Value: {x: -21, y: 1, z: 10}
+    m_Value: {x: 0.1528511, y: 0.61114806, z: 1.1783913}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -392,20 +392,20 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.0025803382, y: 0.8808955, z: -0.47418737, w: -0.0068579847}
+    m_Target: {x: -0.23194788, y: -0.24607277, z: 0.05996754, w: -0.9396703}
     speed: 2
-    m_Value: {x: -0.002579198, y: 0.8805063, z: -0.47397786, w: -0.0068549546}
+    m_Value: {x: -0.23184031, y: -0.24595866, z: 0.05993973, w: -0.93923455}
   m_Size:
-    m_Target: 1.212436
+    m_Target: 0.8660254
     speed: 2
-    m_Value: 1.212436
+    m_Value: 0.8660254
   m_Ortho:
     m_Target: 0
     speed: 2
     m_Value: 0
   m_CameraSettings:
-    m_Speed: 0.8060009
-    m_SpeedNormalized: 0.40000045
+    m_Speed: 0.48759997
+    m_SpeedNormalized: 0.23999998
     m_SpeedMin: 0.01
     m_SpeedMax: 2
     m_EasingEnabled: 1
@@ -610,7 +610,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -694,23 +694,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: e04a0000
-      m_LastClickedID: 19168
-      m_ExpandedIDs: 6228feff22f6ffff60f6ffff82f6ffffb2f8ffff06f9ffff0cf9ffff12f9ffff16f9ffff44faffff48faffff64faffffb8faffffbefaffffc4faffffc8faffffcefaffffd2faffffd6faffff10fbffff14fbffff26fbffff50fbffff52fbffff
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: eeeaffffb4f8ffff08f9ffff0ef9ffff14f9ffff18f9ffff46faffff62faffffbafaffffc0faffffc6faffffcafaffffd0faffffd4faffffd8faffff12fbffff16fbffff28fbffff52fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: WaterGunLeft
+        m_OriginalName: WaterGunLeft
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: 79842
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 11}
       m_SearchString: 
@@ -758,22 +758,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Effect
+    - Assets/Prefabs
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefabs/Effect
+  - Assets/Prefabs
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\CODE\cndtjs\GitHub\VRProject\MyPortfolioVR
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 4}
-    m_SelectedIDs: 345c0000
-    m_LastClickedID: 23604
-    m_ExpandedIDs: 00000000445b0000465b0000485b00004a5b00004c5b00004e5b0000505b0000ca600000ce600000
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 6e5b0000
+    m_LastClickedID: 23406
+    m_ExpandedIDs: 000000006c5b00006e5b0000705b0000725b0000745b0000765b00007a5b00007c5b0000885c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -801,7 +801,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000445b0000465b0000485b00004a5b00004c5b00004e5b0000505b0000
+    m_ExpandedIDs: 000000006c5b00006e5b0000705b0000725b0000745b0000765b0000785b00007a5b00007c5b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -829,7 +829,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: 526e00004a6e0000426a0000144f0000dc510000c2400000debd00000000000018a001005a3a02006a3a0200
+    m_ExpandedInstanceIDs: 526e00004a6e0000426a0000144f0000dc510000c2400000debd00000000000018a001005a3a02006a3a0200804b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

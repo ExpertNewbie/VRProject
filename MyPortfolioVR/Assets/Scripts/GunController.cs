@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
+    GameStateManager gameManager;
     public Transform gunPoint;
     [SerializeField] TextMesh textCurrentQuantity;
     [SerializeField] GameObject waterAttackSplash;
@@ -23,13 +24,10 @@ public class GunController : MonoBehaviour
     Vector3 originScale = Vector3.one * 0.02f;
     Ray ray;
     RaycastHit hitInfo;
-    readonly string TextColor_Green = "#34D149";
-    readonly string TextColor_Orange = "#C3FF00";
-    readonly string TextColor_Yellow = "#FF9900";
-    readonly string TextColor_Red = "#FF0007";
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("GameStateManager").GetComponent<GameStateManager>();
         // recoveryQuantity = ???    Import Save Data
         // spendQuantity = ???       Import Save Data
         currentQuantity = 100.0f;
@@ -55,7 +53,8 @@ public class GunController : MonoBehaviour
         {
             Recovery();
         }
-        UpdateQuantityText();
+        DrawAimPoint();
+        UpdateQuantity();
         reshootCurrentTime = Mathf.Clamp(reshootCurrentTime + Time.deltaTime, 0f, 1.0f);
     }
     public void Shoot()
@@ -146,18 +145,9 @@ public class GunController : MonoBehaviour
     {
         currentQuantity = Mathf.Clamp(currentQuantity + (recoveryQuantity*Time.deltaTime), 0f, 100.0f);
     }
-    void UpdateQuantityText()
+    void UpdateQuantity()
     {
         textCurrentQuantity.text = Mathf.Floor(currentQuantity) + "%";
-        Color color;
-        ColorUtility.TryParseHtmlString(SelectColor(), out color);
-        textCurrentQuantity.color = color;
+        textCurrentQuantity.color = BaseData.Instance().SelectTextColor(currentQuantity);
     }
-    string SelectColor() => currentQuantity switch
-    {
-        var a when a >= 75.0f => TextColor_Green,
-        var a when a >= 50.0f => TextColor_Orange,
-        var a when a >= 25.0f => TextColor_Yellow,
-        _ => TextColor_Red,
-    };
 }

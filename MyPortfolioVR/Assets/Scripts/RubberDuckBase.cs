@@ -6,9 +6,10 @@ using UnityEngine.AI;
 
 public class RubberDuckBase : MonoBehaviour
 {
-    [SerializeField] AudioSource normalSound;
-    [SerializeField] AudioSource hitSound;
-    [SerializeField] AudioSource deathSound;
+    [SerializeField] AudioClip normalSound;
+    [SerializeField] AudioClip hitSound;
+    [SerializeField] AudioClip deathSound;
+    [SerializeField] AudioSource audioPlayer;
     float maxHP = 10.0f;
     float currentHP;
     RubberDuckMove moveAgent;
@@ -27,7 +28,7 @@ public class RubberDuckBase : MonoBehaviour
         currentTime += Time.deltaTime;
         if(currentTime > reloadTime && normalSound != null)
         {
-            normalSound.Play();
+            audioPlayer.PlayOneShot(normalSound);
             reloadTime = UnityEngine.Random.Range(2.0f, 12.0f);
             currentTime = 0;
         }
@@ -37,7 +38,7 @@ public class RubberDuckBase : MonoBehaviour
         currentHP = Mathf.Clamp(currentHP - attackPower, 0f, maxHP);
         if(currentHP > 0f)
         {
-            hitSound.Play();
+            audioPlayer.PlayOneShot(hitSound);
             moveAgent.GotoRandomPoint(true);
             return;
         }
@@ -45,7 +46,7 @@ public class RubberDuckBase : MonoBehaviour
     }
     void Death()
     {
-        deathSound.Play();
+        audioPlayer.PlayOneShot(deathSound);
         StartCoroutine(DeathEffect());
     }
     IEnumerator DeathEffect()
@@ -56,7 +57,7 @@ public class RubberDuckBase : MonoBehaviour
     }
     void OnCollisionEnter(Collision other)
     {
-        hitSound.Play();
+        audioPlayer.PlayOneShot(hitSound);
         moveAgent.GotoRandomPoint(false);
     }
 }

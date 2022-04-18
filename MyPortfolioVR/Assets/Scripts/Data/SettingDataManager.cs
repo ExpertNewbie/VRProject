@@ -6,23 +6,22 @@ using UnityEngine;
 
 public class SettingDataManager : AbsDataManager<SettingData>
 {
-    SettingData data = new SettingData();
-    void Start()
+    public SettingDataManager()
     {
         LoadData();
     }
     public override SettingData LoadData()
     {
         string path = Application.persistentDataPath + "/setting_data.dat";
-        SettingData datas = new SettingData(true);
+        SettingData data = new SettingData(true);
         if(File.Exists(path))
         {
             FileStream fileStream = File.OpenRead(path);
             BinaryFormatter bf = new BinaryFormatter();
-            datas = (SettingData) bf.Deserialize(fileStream);
+            data = (SettingData) bf.Deserialize(fileStream);
             fileStream.Close();
         }
-        return datas;
+        return data;
     }
     public override void SaveData()
     {
@@ -42,11 +41,6 @@ public class SettingDataManager : AbsDataManager<SettingData>
         }
         BinaryFormatter bf = new BinaryFormatter();
         bf.Serialize(fileStream, inputData);
-        data = inputData;
         fileStream.Close();
-    }
-    void OnDestroy()
-    {
-        SaveData(data);
     }
 }
