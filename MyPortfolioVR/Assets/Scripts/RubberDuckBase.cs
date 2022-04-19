@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 public class RubberDuckBase : MonoBehaviour
 {
+    GameStateManager stateManager;
+    GameEffectManager effectManager;
     [SerializeField] AudioClip normalSound;
     [SerializeField] AudioClip hitSound;
     [SerializeField] AudioClip deathSound;
@@ -15,9 +17,12 @@ public class RubberDuckBase : MonoBehaviour
     RubberDuckMove moveAgent;
     float reloadTime;
     float currentTime;
+    RaycastHit hitInfo;
     // Start is called before the first frame update
     void Start()
     {
+        stateManager = GameObject.Find("GameStateManager").GetComponent<GameStateManager>();
+        effectManager = GameObject.Find("GameEffectManager").GetComponent<GameEffectManager>();
         // maxHP = ??? Import Setting Data
         currentHP = maxHP;
         moveAgent = GetComponentInParent<RubberDuckMove>();
@@ -33,19 +38,28 @@ public class RubberDuckBase : MonoBehaviour
             currentTime = 0;
         }
     }
-    public void OnDamaged(float attackPower)
+    public void OnDamaged(float attackPower, RaycastHit hitInfo)
     {
+        this.hitInfo = hitInfo;
         currentHP = Mathf.Clamp(currentHP - attackPower, 0f, maxHP);
         if(currentHP > 0f)
         {
+            effectManager.UseEffectPool("HitEffectList", hitInfo.point, hitInfo.normal * -1);
             audioPlayer.PlayOneShot(hitSound);
-            moveAgent.GotoRandomPoint(true);
+            if(!name.Contains("Boss"))
+                moveAgent.GotoRandomPoint(true);
+            else
+                BossSkillActivate();
             return;
         }
         Death();
     }
     void Death()
     {
+        effectManager.UseEffectPool("DeathEffectList", hitInfo.point, hitInfo.normal * -1);
+        string effectName = FindEffectForName(name);
+        if(effectName != null)
+            effectManager.UseEffectPool(effectName, hitInfo.point, hitInfo.normal * -1);
         audioPlayer.PlayOneShot(deathSound);
         StartCoroutine(DeathEffect());
     }
@@ -54,6 +68,22 @@ public class RubberDuckBase : MonoBehaviour
         // 흐릿해지고 넘어지는 모션
         yield return null;
         Destroy(gameObject);
+    }
+    void BossSkillActivate()
+    {
+        // 보스의 효과 발동
+    }
+    string FindEffectForName(string name)
+    {
+        switch(name)
+        {
+            case string a when a.Contains("Ink") : return "DuckSPInkList";
+            case string a when a.Contains("Max") : return "DuckSPMaxList";
+            case string a when a.Contains("Half") : return "DuckSPHaldList";
+            case string a when a.Contains("Gold") : return "DuckSPGoldList";
+            case string a when a.Contains("Time") : return "DuckSPTimeList";
+            default : return null;
+        }
     }
     void OnCollisionEnter(Collision other)
     {

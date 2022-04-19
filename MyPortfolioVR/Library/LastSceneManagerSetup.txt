@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/ImportAssets/BloodDecalsAndEffects/BloodGushFX/BloodPartcleFX_Scene.unity
+- path: Assets/Scenes/PracticeScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

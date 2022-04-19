@@ -9425,7 +9425,6 @@ GameObject:
   - component: {fileID: 7364099132946364101}
   - component: {fileID: 7242896744195112869}
   - component: {fileID: 7277761315359346125}
-  - component: {fileID: 7468134878238600475}
   m_Layer: 0
   m_Name: Water_Attack_Splash
   m_TagString: Untagged
@@ -14121,19 +14120,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &7468134878238600475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7366088116631565435}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fd2e8874f60266498a388d7229a1bac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnlyDeactivate: 0
 --- !u!1 &7367882195830333223
 GameObject:
   m_ObjectHideFlags: 0

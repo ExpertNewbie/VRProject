@@ -5,14 +5,10 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    GameStateManager gameManager;
+    GameStateManager stateManager;
+    GameEffectManager effectManager;
     public Transform gunPoint;
     [SerializeField] TextMesh textCurrentQuantity;
-    [SerializeField] GameObject waterAttackSplash;
-    [SerializeField] GameObject waterHitSplash;
-    List<GameObject> waterHitSplashList = new List<GameObject>();
-    List<GameObject> waterAttackSplashList = new List<GameObject>();
-    public int effectPoolCount = 4;
     float reshootCurrentTime = 0.0f;
     float reshootLimitTime = 0.1f;
     float currentQuantity;
@@ -27,24 +23,11 @@ public class GunController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.Find("GameStateManager").GetComponent<GameStateManager>();
+        stateManager = GameObject.Find("GameStateManager").GetComponent<GameStateManager>();
+        effectManager = GameObject.Find("GameEffectManager").GetComponent<GameEffectManager>();
         // recoveryQuantity = ???    Import Save Data
         // spendQuantity = ???       Import Save Data
         currentQuantity = 100.0f;
-        for(int i=0; i<effectPoolCount; i++)
-        {
-            GameObject go = Instantiate(waterAttackSplash);
-            go.transform.position = Vector3.down * 10;
-            go.SetActive(false);
-            waterAttackSplashList.Add(go);
-        }
-        for(int i=0; i<effectPoolCount; i++)
-        {
-            GameObject go = Instantiate(waterHitSplash);
-            go.transform.position = Vector3.down * 10;
-            go.SetActive(false);
-            waterHitSplashList.Add(go);
-        }
     }
     // Update is called once per frame
     void Update()
@@ -63,18 +46,8 @@ public class GunController : MonoBehaviour
         {
             return;
         }
-        if(waterAttackSplashList.Count > 0)
-        {
+        if(effectManager.UseEffectPool("WaterAttackSplashList", gunPoint))
             reshootCurrentTime = 0;
-            GameObject go = waterAttackSplashList[0];
-            waterAttackSplashList.RemoveAt(0);
-            go.transform.position = gunPoint.position;
-            go.transform.rotation = gunPoint.rotation;
-            go.SetActive(true);
-            ParticleSystem effect = go.GetComponentInChildren<ParticleSystem>();
-            effect.Play();
-            waterAttackSplashList.Add(go);
-        }
         HitTarget();
     }
     bool Spend()
@@ -90,21 +63,14 @@ public class GunController : MonoBehaviour
     {
         if(RayCast())
         {
-            GameObject go = waterHitSplashList[0];
-            waterHitSplashList.RemoveAt(0);
-            go.transform.position = hitInfo.point;
-            go.transform.forward = hitInfo.normal * -1;
-            go.SetActive(true);
-            ParticleSystem effect = go.GetComponentInChildren<ParticleSystem>();
-            effect.Play();
-            waterHitSplashList.Add(go);
+            effectManager.UseEffectPool("WaterHitSplashList", hitInfo.point, hitInfo.normal *-1);
             /////////////////////////////////////////////////////////// RubberDuck Damaged
             if(hitInfo.transform.name.Contains("Duck"))
             {
                 RubberDuckBase duck = hitInfo.transform.GetComponent<RubberDuckBase>();
                 if(duck)
                 {
-                    duck.OnDamaged(attackPower);
+                    duck.OnDamaged(attackPower, hitInfo);
                 }
             }
             /////////////////////////////////////////////////////////// RubberDuck Damaged
