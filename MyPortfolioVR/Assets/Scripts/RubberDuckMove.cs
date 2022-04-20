@@ -5,14 +5,18 @@ using UnityEngine.AI;
 
 public class RubberDuckMove : MonoBehaviour
 {
+    GameEffectManager effectManager;
+    GameBaseData.MonsterData data;
     NavMeshAgent agent;
-    float speed = 10.0f;
-    float run = 10.0f;
+    // float speed = 10.0f;
+    // float run = 10.0f;
     // Start is called before the first frame update
     void Start()
     {
+        effectManager = GameObject.Find("GameEffectManager").GetComponent<GameEffectManager>();
+        data = GameBaseData.Instance().GetDuckData(name);
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = speed;
+        agent.speed = data.Speed;
         GotoRandomPoint();
     }
     // Update is called once per frame
@@ -41,8 +45,8 @@ public class RubberDuckMove : MonoBehaviour
     }
     IEnumerator RunningTime()
     {
-        agent.speed = speed * run;
+        agent.speed = data.Speed * data.RunPower;
         yield return new WaitForSeconds(7.0f);
-        agent.speed = speed;
+        agent.speed = data.Speed;
     }
 }

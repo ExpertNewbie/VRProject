@@ -6,6 +6,8 @@ public class GameEffectManager : MonoBehaviour
 {
     [SerializeField] GameObject waterAttackSplash;
     [SerializeField] GameObject waterHitSplash;
+    [SerializeField] GameObject waterMoveSplash;
+    [SerializeField] GameObject duckRun;
     [SerializeField] GameObject duckHit;
     [SerializeField] GameObject duckDeath;
     [SerializeField] GameObject duckSPInk;
@@ -13,8 +15,11 @@ public class GameEffectManager : MonoBehaviour
     [SerializeField] GameObject duckSPHalf;
     [SerializeField] GameObject duckSPGold;
     [SerializeField] GameObject duckSPTime;
+    [SerializeField] GameObject duckSPBoss;
     List<GameObject> waterHitSplashList;
     List<GameObject> waterAttackSplashList;
+    List<GameObject> waterMoveSplashList;
+    List<GameObject> runEffectList;
     List<GameObject> hitEffectList;
     List<GameObject> deathEffectList;
     List<GameObject> duckSPInkList;
@@ -22,45 +27,42 @@ public class GameEffectManager : MonoBehaviour
     List<GameObject> duckSPHalfList;
     List<GameObject> duckSPGoldList;
     List<GameObject> duckSPTimeList;
+    List<GameObject> duckSPBossList;
+    public int persistEffectPoolCount = 2;
     public int waterPoolCount = 8;
     public int duckHitPoolCount = 6;
     public int duckDeathPoolCount = 4;
     public int duckPSPoolCount = 3;
-    enum EffectType
-    {
-        Duck,
-        Weapon,
-        Jetpack,
-        Speed
-    }
     // Start is called before the first frame update
     void Start()
     {
-        CreateEffectPool(waterAttackSplash, waterPoolCount, EffectType.Weapon, out waterAttackSplashList);
-        CreateEffectPool(waterHitSplash, waterPoolCount, EffectType.Weapon, out waterHitSplashList);
-        CreateEffectPool(duckHit, duckHitPoolCount, EffectType.Duck, out hitEffectList);
-        CreateEffectPool(duckDeath, duckDeathPoolCount, EffectType.Duck, out deathEffectList);
+        CreateEffectPool(waterAttackSplash, waterPoolCount, out waterAttackSplashList);
+        CreateEffectPool(waterHitSplash, waterPoolCount, out waterHitSplashList);
+        CreateEffectPool(duckHit, duckHitPoolCount, out hitEffectList);
+        CreateEffectPool(duckDeath, duckDeathPoolCount, out deathEffectList);
         //////////////////////////////////////////////////////////////////////// Duck SP Effect
-        CreateEffectPool(duckSPInk, duckPSPoolCount, EffectType.Duck, out duckSPInkList);
-        CreateEffectPool(duckSPMax, duckPSPoolCount, EffectType.Duck, out duckSPMaxList);
-        CreateEffectPool(duckSPHalf, duckPSPoolCount, EffectType.Duck, out duckSPHalfList);
-        CreateEffectPool(duckSPGold, duckPSPoolCount, EffectType.Duck, out duckSPGoldList);
-        CreateEffectPool(duckSPTime, duckPSPoolCount, EffectType.Duck, out duckSPTimeList);
+        CreateEffectPool(duckSPInk, duckPSPoolCount, out duckSPInkList);
+        CreateEffectPool(duckSPMax, duckPSPoolCount, out duckSPMaxList);
+        CreateEffectPool(duckSPHalf, duckPSPoolCount, out duckSPHalfList);
+        CreateEffectPool(duckSPGold, duckPSPoolCount, out duckSPGoldList);
+        CreateEffectPool(duckSPTime, duckPSPoolCount, out duckSPTimeList);
         //////////////////////////////////////////////////////////////////////// Duck SP Effect END
+        // CreateEffectPool(waterHitSplash, persistEffectPoolCount, out waterHitSplashList);
+        // CreateEffectPool(duckRun, persistEffectPoolCount, out runEffectList);
+        // CreateEffectPool(duckSPBoss, duckPSPoolCount, out duckSPBossList);
     }
     // Update is called once per frame
     void Update()
     {
         
     }
-    void CreateEffectPool(GameObject effectObj, int listCount, EffectType type, out List<GameObject> list)
+    void CreateEffectPool(GameObject effectObj, int listCount, out List<GameObject> list)
     {
         list = new List<GameObject>();
         for(int i=0; i<listCount; i++)
         {
             GameObject go = Instantiate(effectObj);
-            int down = SelectDownable(type);
-            go.transform.position = Vector3.down * down;
+            go.transform.position = Vector3.down * 15;
             go.SetActive(false);
             list.Add(go);
         }
@@ -99,17 +101,12 @@ public class GameEffectManager : MonoBehaviour
         }
         return false;
     }
-    int SelectDownable(EffectType type) => type switch
-    {
-        EffectType.Duck => 12,
-        EffectType.Jetpack => 13,
-        EffectType.Weapon => 14,
-        _ => 15,
-    };
     List<GameObject> FindPool(string methodName) => methodName switch
     {
         "WaterHitSplashList" => waterHitSplashList,
         "WaterAttackSplashList" => waterAttackSplashList,
+        "WaterMoveSplashList" => null,
+        "RunEffectList" => null,
         "HitEffectList" => hitEffectList,
         "DeathEffectList" => deathEffectList,
         "DuckSPInkList" => duckSPInkList,
@@ -117,6 +114,7 @@ public class GameEffectManager : MonoBehaviour
         "DuckSPHalfList" => duckSPHalfList,
         "DuckSPGoldList" => duckSPGoldList,
         "DuckSPTimeList" => duckSPTimeList,
+        "DuckSPBossList" => null,
         _ => null
     };
 }

@@ -132,4 +132,121 @@ public class GameBaseData
     };
     //////////////////////////////////////////////////////////////////// Upgrade Speed END
     ///////////////////////////////////////////////////////////////////////////////// Upgrade Data END
+    ///////////////////////////////////////////////////////////////////////////////// Duck Data
+    public class MonsterData
+    {
+        public MonsterData(int gold, int count, float hP, float speed, float runPower,
+                            bool isBoss = false, bool effect = false)
+        {
+            Gold = gold;
+            Count = count;
+            HP = hP;
+            Speed = speed;
+            RunPower = runPower;
+            IsBoss = IsBoss;
+            Effect = effect;
+        }
+        public int Gold { get; private set; }
+        public int Count { get; private set; }
+        public float HP { get; private set; }
+        public float Speed { get; private set; }
+        public float RunPower { get; private set; }
+        public bool IsBoss { get; private set;}
+        public bool Effect { get; private set;}
+    } 
+    const int initialGold = 10;
+    const int initialDefaultCount = 1;
+    const float initailDuckHP = 10.0f;
+    const float initialDuckSpeed = 3.0f;
+    const float initialDuckRunPower = 5.0f;
+    public MonsterData GetDuckData(string duckName)
+    {
+        int gold = (int) Mathf.Floor(SelectDuckGoldData(duckName));
+        int count = SelectDuckCountData(duckName);
+        float hP = SelectDuckHPData(duckName);
+        float speed = SelectDuckSpeedData(duckName);
+        float runPower = SelectDuckRunPowerData(duckName);
+        bool isBoss = SelectDuckBossData(duckName);
+        bool effect = SelectDuckEffectData(duckName);
+        MonsterData md =  new MonsterData(gold, count, hP, speed, runPower, isBoss, effect);
+        return md;
+    }
+    float SelectDuckGoldData(string duckName) => duckName switch
+    {
+        var a when a.Contains("Ink") => initialGold * 1.5f,
+        var a when a.Contains("Speedy") => initialGold * 1.5f,
+        var a when a.Contains("HP") => initialGold * 2.0f,
+        var a when a.Contains("Twin") => initialGold * 2.5f,
+        var a when a.Contains("Pond") => initialGold * 2.0f,
+        var a when a.Contains("Gold") => initialGold * 30.0f,
+        var a when a.Contains("Max") => initialGold * 1.5f,
+        var a when a.Contains("Half") => initialGold * 1.5f,
+        var a when a.Contains("Time") => initialGold * 1.5f,
+        var a when a.Contains("Boss") => initialGold * 15.0f,
+        _ => initialGold,
+    };
+    int SelectDuckCountData(string duckName) => duckName switch
+    {
+        var a when a.Contains("Gold") => 0,
+        var a when a.Contains("Max") => 0,
+        var a when a.Contains("Half") => 0,
+        var a when a.Contains("Time") => 0,
+        _ => initialDefaultCount,
+    };
+    float SelectDuckHPData(string duckName) => duckName switch
+    {
+        var a when a.Contains("Ink") => initailDuckHP * 2.0f,
+        var a when a.Contains("HP") => initailDuckHP * 5.0f,
+        var a when a.Contains("Twin") => initailDuckHP * 2.0f,
+        var a when a.Contains("Pond") => initailDuckHP * 3.0f,
+        var a when a.Contains("Gold") => initailDuckHP * 2.0f,
+        var a when a.Contains("Max") => initailDuckHP * 2.0f,
+        var a when a.Contains("Half") => initailDuckHP * 2.0f,
+        var a when a.Contains("Time") => initailDuckHP * 2.0f,
+        var a when a.Contains("Large") => initailDuckHP * 10.0f,
+        var a when a.Contains("Boss") => initailDuckHP * 20.0f,
+        _ => initailDuckHP,
+    };
+    float SelectDuckSpeedData(string duckName) => duckName switch
+    {
+        var a when a.Contains("Speedy") => initialSpeed * 3.0f,
+        var a when a.Contains("Twin") => initialSpeed * 1.5f,
+        var a when a.Contains("Pond") => initialSpeed * 2.0f,
+        var a when a.Contains("Gold") => initialSpeed * 2.0f,
+        var a when a.Contains("Max") => initialSpeed * 2.0f,
+        var a when a.Contains("Half") => initialSpeed * 2.0f,
+        var a when a.Contains("Time") => initialSpeed * 2.0f,
+        var a when a.Contains("Large") => initialSpeed / 2.0f,
+        var a when a.Contains("Boss") => initialSpeed / 2.5f,
+        _ => initialSpeed,
+    };
+    float SelectDuckRunPowerData(string duckName) => duckName switch
+    {
+        var a when a.Contains("Speedy") => initialDuckRunPower + 5.0f,
+        var a when a.Contains("Twin") => initialDuckRunPower + 2.0f,
+        var a when a.Contains("Pond") => initialDuckRunPower + 2.0f,
+        var a when a.Contains("Gold") => initialDuckRunPower + 2.0f,
+        var a when a.Contains("Max") => initialDuckRunPower + 2.0f,
+        var a when a.Contains("Half") => initialDuckRunPower + 2.0f,
+        var a when a.Contains("Time") => initialDuckRunPower + 2.0f,
+        var a when a.Contains("Large") => initialDuckRunPower - 2.5f,
+        var a when a.Contains("Boss") => 1.0f,
+        _ => initialDuckRunPower,
+    };
+    bool SelectDuckBossData(string duckName) => duckName switch
+    {
+        var a when a.Contains("Boss") => true,
+        _ => false,
+    };
+    bool SelectDuckEffectData(string duckName) => duckName switch
+    {
+        var a when a.Contains("Ink") => true,
+        var a when a.Contains("Gold") => true,
+        var a when a.Contains("Max") => true,
+        var a when a.Contains("Half") => true,
+        var a when a.Contains("Time") => true,
+        var a when a.Contains("Boss") => true,
+        _ => false,
+    };
+    ///////////////////////////////////////////////////////////////////////////////// Duck Data END
 }

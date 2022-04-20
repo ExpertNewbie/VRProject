@@ -8,11 +8,12 @@ public class RubberDuckBase : MonoBehaviour
 {
     GameStateManager stateManager;
     GameEffectManager effectManager;
+    GameBaseData.MonsterData data;
     [SerializeField] AudioClip normalSound;
     [SerializeField] AudioClip hitSound;
     [SerializeField] AudioClip deathSound;
     [SerializeField] AudioSource audioPlayer;
-    float maxHP = 10.0f;
+    // float maxHP = 10.0f;
     float currentHP;
     RubberDuckMove moveAgent;
     float reloadTime;
@@ -23,8 +24,8 @@ public class RubberDuckBase : MonoBehaviour
     {
         stateManager = GameObject.Find("GameStateManager").GetComponent<GameStateManager>();
         effectManager = GameObject.Find("GameEffectManager").GetComponent<GameEffectManager>();
-        // maxHP = ??? Import Setting Data
-        currentHP = maxHP;
+        data = GameBaseData.Instance().GetDuckData(name);
+        currentHP = data.HP;
         moveAgent = GetComponentInParent<RubberDuckMove>();
     }
     // Update is called once per frame
@@ -41,7 +42,7 @@ public class RubberDuckBase : MonoBehaviour
     public void OnDamaged(float attackPower, RaycastHit hitInfo)
     {
         this.hitInfo = hitInfo;
-        currentHP = Mathf.Clamp(currentHP - attackPower, 0f, maxHP);
+        currentHP = Mathf.Clamp(currentHP - attackPower, 0f, data.HP);
         if(currentHP > 0f)
         {
             effectManager.UseEffectPool("HitEffectList", hitInfo.point, hitInfo.normal * -1);

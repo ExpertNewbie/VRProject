@@ -4,32 +4,40 @@ using UnityEngine;
 
 public struct SaveData
 {
-    public SaveData(bool creater)
+    public SaveData(bool masterLevel)
     {
         /////////////////////////////////////////////////////////////// Contruct Default
         PlayTime = 0f;
-        HaveGold = 0;
         SpendGold = 0;
         AddGold = 0;
         KillCount = 0;
-        KillCountBonus = 0;
-        StageClearState = StageClear.Stage_0;
-        // UpgradeWeaponDamageState = UpgradeWeaponDamage.Upgrade_0;
-        // UpgradeWeaponEfficiencyState = UpgradeWeaponEfficiency.Upgrade_0;
-        // UpgradeWeaponChargeState = UpgradeWeaponCharge.Upgrade_0;
-        // UpgradeJetpackPowerState = UpgradeJetpackPower.Upgrade_0;
-        // UpgradeJetpackEfficiencyState = UpgradeJetpackEfficiency.Upgrade_0;
-        // UpgradeJetpackChargeState = UpgradeJetpackCharge.Upgrade_0;
-        // UpgradeSpeedStrengthState = UpgradeSpeedStrength.Upgrade_0;
-        // UpgradeSpeedBoosterState = UpgradeSpeedBooster.Upgrade_0;
-        UpgradeWeaponDamageState = UpgradeWeaponDamage.Upgrade_5;
-        UpgradeWeaponEfficiencyState = UpgradeWeaponEfficiency.Upgrade_5;
-        UpgradeWeaponChargeState = UpgradeWeaponCharge.Upgrade_5;
-        UpgradeJetpackPowerState = UpgradeJetpackPower.Upgrade_5;
-        UpgradeJetpackEfficiencyState = UpgradeJetpackEfficiency.Upgrade_5;
-        UpgradeJetpackChargeState = UpgradeJetpackCharge.Upgrade_5;
-        UpgradeSpeedStrengthState = UpgradeSpeedStrength.Upgrade_5;
-        UpgradeSpeedBoosterState = UpgradeSpeedBooster.Upgrade_5;
+        KillCountBoss = 0;
+        if(masterLevel)
+        {
+            HaveGold = 0;
+            StageClearState = StageClear.Stage_0;
+            UpgradeWeaponDamageState = UpgradeWeaponDamage.Upgrade_0;
+            UpgradeWeaponEfficiencyState = UpgradeWeaponEfficiency.Upgrade_0;
+            UpgradeWeaponChargeState = UpgradeWeaponCharge.Upgrade_0;
+            UpgradeJetpackPowerState = UpgradeJetpackPower.Upgrade_0;
+            UpgradeJetpackEfficiencyState = UpgradeJetpackEfficiency.Upgrade_0;
+            UpgradeJetpackChargeState = UpgradeJetpackCharge.Upgrade_0;
+            UpgradeSpeedStrengthState = UpgradeSpeedStrength.Upgrade_0;
+            UpgradeSpeedBoosterState = UpgradeSpeedBooster.Upgrade_0;
+        }
+        else
+        {
+            HaveGold = 10000;
+            StageClearState = StageClear.Stage_5;
+            UpgradeWeaponDamageState = UpgradeWeaponDamage.Upgrade_5;
+            UpgradeWeaponEfficiencyState = UpgradeWeaponEfficiency.Upgrade_5;
+            UpgradeWeaponChargeState = UpgradeWeaponCharge.Upgrade_5;
+            UpgradeJetpackPowerState = UpgradeJetpackPower.Upgrade_5;
+            UpgradeJetpackEfficiencyState = UpgradeJetpackEfficiency.Upgrade_5;
+            UpgradeJetpackChargeState = UpgradeJetpackCharge.Upgrade_5;
+            UpgradeSpeedStrengthState = UpgradeSpeedStrength.Upgrade_5;
+            UpgradeSpeedBoosterState = UpgradeSpeedBooster.Upgrade_5;
+        }
         /////////////////////////////////////////////////////////////// Contruct Default END
     }
     public SaveData(SaveData data)
@@ -40,7 +48,7 @@ public struct SaveData
         SpendGold = data.SpendGold;
         AddGold = data.AddGold;
         KillCount = data.KillCount;
-        KillCountBonus = data.KillCountBonus;
+        KillCountBoss = data.KillCountBoss;
         StageClearState = data.StageClearState;
         UpgradeWeaponDamageState = data.UpgradeWeaponDamageState;
         UpgradeWeaponEfficiencyState = data.UpgradeWeaponEfficiencyState;
@@ -57,7 +65,7 @@ public struct SaveData
     public int SpendGold { get; set; }
     public int AddGold { get; set; }
     public int KillCount { get; set; }
-    public int KillCountBonus { get; set; }
+    public int KillCountBoss { get; set; }
     /////////////////////////////////////////////// State
     public StageClear StageClearState { get; set; }
     public UpgradeWeaponDamage UpgradeWeaponDamageState { get; set; }

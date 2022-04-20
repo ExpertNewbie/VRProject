@@ -44,7 +44,8 @@ public class PlayerMove : MonoBehaviour
             // anim.SetBool("Jetpack", false);
         }
         //////////////////////////////////////////////////////////////////// JetPack Use
-        if(ARAVRInput.Get(ARAVRInput.Button.HandTrigger))
+        if(ARAVRInput.Get(ARAVRInput.Button.HandTrigger)
+        || ARAVRInput.Get(ARAVRInput.Button.HandTrigger, ARAVRInput.Controller.LTouch))
         {
             if(Spend())
             {
