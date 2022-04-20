@@ -12,7 +12,7 @@ public class SettingDataManager : AbsDataManager<SettingData>
     }
     public override SettingData LoadData()
     {
-        string path = Application.persistentDataPath + "/setting_data.dat";
+        string path = Application.persistentDataPath + "/setting_data.txt";
         SettingData data = new SettingData(true);
         if(File.Exists(path))
         {
@@ -29,7 +29,7 @@ public class SettingDataManager : AbsDataManager<SettingData>
     }
     public override void SaveData(SettingData inputData)
     {
-        string path = Application.persistentDataPath + "/setting_data.dat";
+        string path = Application.persistentDataPath + "/setting_data.txt";
         FileStream fileStream;
         if(File.Exists(path))
         {

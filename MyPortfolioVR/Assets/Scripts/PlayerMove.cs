@@ -6,17 +6,13 @@ using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
-    GameStateManager gameManager;
+    GameStateManager stateManager;
+    GameBaseData baseData;
     [SerializeField] TextMesh textCurrentQuantity;
     [SerializeField] Image imageCurrentQuantity;
     [SerializeField] Transform aim;
-    float walkSpeed = 2.0f;
-    float runSpeed = 4.0f;
     float gravity = -10.0f;
-    float jetFloat = 3.0f;
     float currentQuantity;
-    float recoveryQuantity = 5/3;
-    float spendQuantity = 5.0f;
     bool isInWater = false;
     Animator anim;
     float yVelocity = 0;
@@ -24,7 +20,8 @@ public class PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.Find("GameStateManager").GetComponent<GameStateManager>();
+        baseData = GameBaseData.Instance();
+        stateManager = GameObject.Find("GameStateManager").GetComponent<GameStateManager>();
         currentQuantity = 100.0f;
         controller = GetComponent<CharacterController>();
         // anim = GetComponentInChildren<Animator>();
@@ -51,7 +48,7 @@ public class PlayerMove : MonoBehaviour
         {
             if(Spend())
             {
-                yVelocity += (jetFloat + -gravity) * Time.deltaTime;
+                yVelocity += (stateManager.JetpackPower + -gravity) * Time.deltaTime;
             }
             // anim.SetBool("Jetpack", true);
         }
@@ -59,11 +56,11 @@ public class PlayerMove : MonoBehaviour
         dir.y = yVelocity;
         if(v > 0)
         {
-            controller.Move(dir * runSpeed * Time.deltaTime);
+            controller.Move(dir * (stateManager.Speed + stateManager.Booster) * Time.deltaTime);
         }
         else
         {
-            controller.Move(dir * walkSpeed * Time.deltaTime);
+            controller.Move(dir * ((stateManager.Speed/2) + stateManager.Booster) * Time.deltaTime);
         }
         UpdateQuantity();
     }
@@ -73,25 +70,28 @@ public class PlayerMove : MonoBehaviour
         {
             return false;
         }
-        currentQuantity = Mathf.Clamp(currentQuantity - (spendQuantity*Time.deltaTime), 0f, 100.0f);
+        currentQuantity = Mathf.Clamp(
+            currentQuantity - (stateManager.JetpackEfficiency * Time.deltaTime), 0f, 100.0f);
         return true;
     }
     void UpdateQuantity()
     {
         textCurrentQuantity.text = Mathf.Floor(currentQuantity) + "%";
-        textCurrentQuantity.color = BaseData.Instance().SelectTextColor(currentQuantity);
-        imageCurrentQuantity.color = BaseData.Instance().SelectTextColor(currentQuantity);
+        textCurrentQuantity.color = GameBaseData.Instance().SelectTextColor(currentQuantity);
+        imageCurrentQuantity.color = GameBaseData.Instance().SelectTextColor(currentQuantity);
+        textCurrentQuantity.transform.forward = Camera.main.transform.forward;
     }
-    public void BonusRecoveryMax()
+    public void BonusChargeMax()
     {
         currentQuantity = 100.0f;
     }
-    public void BonusRecovery()
+    public void BonusCharge()
     {
         currentQuantity = Mathf.Clamp(currentQuantity + 50.0f, 0f, 100.0f);
     }
-    void Recovery()
+    void Charge()
     {
-        currentQuantity = Mathf.Clamp(currentQuantity + (recoveryQuantity*Time.deltaTime), 0f, 100.0f);
+        currentQuantity = Mathf.Clamp(currentQuantity
+                            + (stateManager.JetpackCharge * Time.deltaTime), 0f, 100.0f);
     }
 }

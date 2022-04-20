@@ -13,7 +13,7 @@ public class SaveDataManager : AbsDataManager<SaveData>
     }
     public override SaveData LoadData()
     {
-        string path = Application.persistentDataPath + $"/save_data_{PlayerNumber}.dat";
+        string path = Application.persistentDataPath + $"/save_data_{PlayerNumber}.txt";
         SaveData data = new SaveData(true);
         if(File.Exists(path))
         {
@@ -30,7 +30,7 @@ public class SaveDataManager : AbsDataManager<SaveData>
     }
     public override void SaveData(SaveData inputData)
     {
-        string path = Application.persistentDataPath + $"/save_data_{PlayerNumber}.dat";
+        string path = Application.persistentDataPath + $"/save_data_{PlayerNumber}.txt";
         FileStream fileStream;
         if(File.Exists(path))
         {
