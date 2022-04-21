@@ -13,7 +13,8 @@ public class GunController : MonoBehaviour
     float reshootLimitTime = 0.1f;
     float currentQuantity;
     public bool isInWater = false;
-    public Transform aim;
+    [SerializeField] GameObject aim;
+    GameObject aimClone;
     Vector3 originScale = Vector3.one * 0.02f;
     Ray ray;
     RaycastHit hitInfo;
@@ -23,6 +24,9 @@ public class GunController : MonoBehaviour
         stateManager = GameObject.Find("GameStateManager").GetComponent<GameStateManager>();
         effectManager = GameObject.Find("GameEffectManager").GetComponent<GameEffectManager>();
         currentQuantity = 100.0f;
+        aimClone = Instantiate(aim);
+        aimClone.transform.position = Vector3.down * 10;
+        aimClone.transform.localScale = originScale;
     }
     // Update is called once per frame
     void Update()
@@ -77,14 +81,14 @@ public class GunController : MonoBehaviour
     {
         if(RayCast())
         {
-            aim.position = hitInfo.point;
-            aim.forward = gunPoint.forward;
-            aim.localScale = originScale * Mathf.Max(1, hitInfo.distance);
+            aimClone.transform.position = hitInfo.point;
+            aimClone.transform.forward = gunPoint.forward;
+            aimClone.transform.localScale = originScale * Mathf.Max(1, hitInfo.distance);
         }
         else
         {
-            aim.position = Vector3.down * 10;
-            aim.localScale = originScale;
+            aimClone.transform.position = Vector3.down * 10;
+            aimClone.transform.localScale = originScale;
         }
     }
     bool RayCast()

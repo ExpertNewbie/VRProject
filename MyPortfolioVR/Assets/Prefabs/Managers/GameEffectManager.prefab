@@ -45,8 +45,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterAttackSplash: {fileID: 3735201783879448230, guid: 00ee9a8256d17724997a369c7066843e, type: 3}
   waterHitSplash: {fileID: 4336692632988145871, guid: 3d519f06fe866cc4d9bdaf07adc13697, type: 3}
+  waterMoveSplash: {fileID: 0}
+  duckRun: {fileID: 0}
   duckHit: {fileID: 7039806657880312885, guid: 28d831e775d8b4d44a07fe364bfae159, type: 3}
   duckDeath: {fileID: 2239204934633436251, guid: 9b514865fd9ee244b8f631e0d27471b6, type: 3}
+  duckSPInk: {fileID: 25543970627390864, guid: 9da388248cc731b4a87bb826c235e1e9, type: 3}
+  duckSPMax: {fileID: 25543970627390864, guid: 9da388248cc731b4a87bb826c235e1e9, type: 3}
+  duckSPHalf: {fileID: 25543970627390864, guid: 9da388248cc731b4a87bb826c235e1e9, type: 3}
+  duckSPGold: {fileID: 25543970627390864, guid: 9da388248cc731b4a87bb826c235e1e9, type: 3}
+  duckSPTime: {fileID: 25543970627390864, guid: 9da388248cc731b4a87bb826c235e1e9, type: 3}
+  duckSPBoss: {fileID: 0}
+  persistEffectPoolCount: 2
   waterPoolCount: 8
   duckHitPoolCount: 6
   duckDeathPoolCount: 4
+  duckPSPoolCount: 3

@@ -171,7 +171,7 @@ MonoBehaviour:
   gunPoint: {fileID: 8179148576688255951}
   textCurrentQuantity: {fileID: 2931661435075358357}
   isInWater: 0
-  aim: {fileID: 0}
+  aim: {fileID: 2923400119412897620, guid: 44fdafe8ef9198346a841494b913da42, type: 3}
 --- !u!1001 &8988593829544272051
 PrefabInstance:
   m_ObjectHideFlags: 0

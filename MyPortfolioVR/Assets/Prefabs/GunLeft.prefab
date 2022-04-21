@@ -46,7 +46,7 @@ MonoBehaviour:
   gunPoint: {fileID: 5060180073558598425}
   textCurrentQuantity: {fileID: 5239209802618905659}
   isInWater: 0
-  aim: {fileID: 0}
+  aim: {fileID: 1284135481419088703, guid: ac6ea9e360bc56b4bb59bad2293bc16f, type: 3}
 --- !u!1 &3502032852329832983
 GameObject:
   m_ObjectHideFlags: 0

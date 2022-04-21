@@ -56,18 +56,22 @@ public class RubberDuckBase : MonoBehaviour
     }
     void Death()
     {
+        // Visual Effect
         effectManager.UseEffectPool("DeathEffectList", hitInfo.point, hitInfo.normal * -1);
+        // Common Effect
         stateManager.PlusAddGold(data.Gold);
         if(!name.Contains("Boss"))
             stateManager.PlusKillCount(data.Count);
         else
             stateManager.PlusKillCountBoss(data.Count);
+        // Special Visual Effect
         string effectName = FindVisualEffectForName(name);
         if(data.Effect && effectName != null)
         {
             effectManager.UseEffectPool(effectName, hitInfo.point, hitInfo.normal * -1);
             stateManager.DuckScriptEffect(name);
         }
+        // Sound Effect
         audioPlayer.PlayOneShot(deathSound);
         StartCoroutine(DeathEffect());
     }

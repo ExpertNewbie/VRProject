@@ -38,7 +38,7 @@ public class UIActivator : MonoBehaviour
     public void UIClose()
     {
         isOpen = false;
-        if(stateManager.InPlayState == GameStateManager.GameStateInPlay.Pause)
+        if(stateManager.isPlayStatePause)
             stateManager.InGameStateInPlayChange(GameStateManager.GameStateInPlay.Play);
     }
 }

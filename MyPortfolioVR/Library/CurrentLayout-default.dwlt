@@ -19,9 +19,9 @@ MonoBehaviour:
     width: 1366
     height: 685
   m_ShowMode: 4
-  m_Title: "\uACC4\uCE35 \uAD6C\uC870"
+  m_Title: "\uC52C"
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 189
+  controlID: 77
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,10 +145,10 @@ MonoBehaviour:
     y: 0
     width: 687
     height: 635
-  m_MinSize: {x: 201, y: 442}
+  m_MinSize: {x: 201, y: 342}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 38
+  controlID: 18
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GameView
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -195,14 +195,14 @@ MonoBehaviour:
     y: 306
     width: 687
     height: 329
-  m_MinSize: {x: 201, y: 221}
+  m_MinSize: {x: 101, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 13}
+  m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 13}
   - {fileID: 16}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -227,7 +227,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 98
+  controlID: 78
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -365,7 +365,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -432,9 +432,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -11.128327, y: 12.602348, z: 150.17139}
+    m_Target: {x: -13.953532, y: 11.390881, z: 13.583009}
     speed: 2
-    m_Value: {x: -11.128327, y: 12.602348, z: 150.17139}
+    m_Value: {x: -13.953532, y: 11.390881, z: 13.583009}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -481,13 +481,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.0032312148, y: 0.04194589, z: -0.0020284948, w: -0.999763}
+    m_Target: {x: -0.08886085, y: -0.67610216, z: 0.07643087, w: -0.7284529}
     speed: 2
-    m_Value: {x: -0.0032291166, y: 0.04191865, z: -0.0020271775, w: -0.9991138}
+    m_Value: {x: -0.08781695, y: -0.67461824, z: 0.07522703, w: -0.7290537}
   m_Size:
-    m_Target: 70.71068
+    m_Target: 0.22157657
     speed: 2
-    m_Value: 70.71068
+    m_Value: 0.22157657
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -694,9 +694,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 128e0000
-      m_LastClickedID: 36370
-      m_ExpandedIDs: ee4effff5e59ffffea5effff648fffff8890ffff24b4ffff40faffff44faffffb4faffffbafaffffc0faffffc4faffffcafaffffcefaffffd2faffff0cfbffff10fbffff24fbffff52fbffff0e8e0000248e0000348e0000528e0000708e0000
+      m_SelectedIDs: 2a7afeff
+      m_LastClickedID: -99798
+      m_ExpandedIDs: 5874feff6274feff7074feffc074feff3275feff3675feffa477fefff877fefffe77feff0478feff0878feff5679feffaa79feffb079feffb679feffba79feffc079feffc479feffc879feff027afeff067afeff1a7afeff487afeffc297feffcc97feffd897feffe097feffc6a9feff08f2feffc0f8feffc8f8feffd404ffffcc12ffffe212ffff9a14ffffd6c90100eec90100fec9010026ca010034ed0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -758,22 +758,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scripts/UI
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets
+  - Assets/Scripts/UI
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\CODE\cndtjs\GitHub\VRProject\MyPortfolioVR
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 31}
-    m_SelectedIDs: b45c0000
-    m_LastClickedID: 23732
-    m_ExpandedIDs: 00000000b45c0000b65c0000b85c0000ba5c0000bc5c0000be5c0000c05c0000c25c0000c45c0000c65c0000ca5c0000cc5c0000da5d0000dc5d000078bb0000
+    scrollPos: {x: 0, y: 52}
+    m_SelectedIDs: a28e0100
+    m_LastClickedID: 102050
+    m_ExpandedIDs: 00000000588e01005a8e01005c8e01005e8e0100608e0100628e0100648e0100668e0100688e01006a8e01006c8e01006e8e0100708e0100728e01007e8e0100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -801,7 +801,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000b45c0000b65c0000b85c0000ba5c0000bc5c0000be5c0000c05c0000c25c0000c45c0000c65c0000c85c0000ca5c0000cc5c0000ce5c0000
+    m_ExpandedIDs: 00000000588e01005a8e01005c8e01005e8e0100608e0100628e0100648e0100668e0100688e01006a8e01006c8e01006e8e0100708e0100728e0100748e0100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -828,22 +828,22 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 526e00004a6e0000426a0000144f0000dc510000c2400000debd000018a001005a3a02006a3a0200804b000000000000fe160000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: WaterCharge
+      m_OriginalName: WaterCharge
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 157018
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:
@@ -889,7 +889,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 1114
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_LockTracker:
     m_IsLocked: 0

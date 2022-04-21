@@ -9,9 +9,9 @@ public class CamRotate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        angle.x = Camera.main.transform.eulerAngles.y;
-        angle.y =-Camera.main.transform.eulerAngles.x;
-        angle.z = Camera.main.transform.eulerAngles.z;
+        // angle.x = Camera.main.transform.eulerAngles.y;
+        // angle.y =-Camera.main.transform.eulerAngles.x;
+        // angle.z = Camera.main.transform.eulerAngles.z;
     }
 
     // Update is called once per frame

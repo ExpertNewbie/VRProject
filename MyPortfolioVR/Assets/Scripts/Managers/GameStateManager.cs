@@ -9,36 +9,9 @@ public class GameStateManager : MonoBehaviour
     GameBaseData baseData;
     public SaveData SaveData { get; private set; }
     public SettingData SettingData { get; private set; }
-    public float WeaponPower { get; private set; }
-    public float WeaponEfficiency { get; private set; }
-    public float WeaponCharge { get; private set; }
-    public float JetpackPower { get; private set; }
-    public float JetpackEfficiency { get; private set; }
-    public float JetpackCharge { get; private set; }
-    public float Speed { get; private set; }
-    public float Booster { get; private set; }
-    public int AddGold { get; private set; }
-    public int killCount { get; private set; }
-    public int KillCountBoss { get; private set; }
-    public GameState InGameState { get; private set; }
-    public GameStateInPlay InPlayState { get; private set; }
     PlayerMove playerMove;
     GunController gunRightController;
     GunController gunLeftController;
-    public enum GameState
-    {
-        Menu,
-        Training,
-        Playing
-    }
-    public enum GameStateInPlay
-    {
-        NoPlay,
-        Start,
-        Play,
-        Pause,
-        Stop
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -78,8 +51,25 @@ public class GameStateManager : MonoBehaviour
         playerMove = GameObject.Find("Player").GetComponent<PlayerMove>();
         gunRightController = GameObject.Find("WaterGunRight").GetComponent<GunController>();
         gunLeftController = GameObject.Find("WaterGunLeft").GetComponent<GunController>();
+        // Test
+        InPlayState = GameStateInPlay.Play; 
 Debug.Log("InPlayState : "+InPlayState);
     }
+    public void Charging(bool isInWater)
+    {
+        playerMove.isInWater = isInWater;
+        gunRightController.isInWater = isInWater;
+        gunLeftController.isInWater = isInWater;
+    }
+    ///////////////////////////////////////////////////////////////////////////////// Upgrade Info
+    public float WeaponPower { get; private set; }
+    public float WeaponEfficiency { get; private set; }
+    public float WeaponCharge { get; private set; }
+    public float JetpackPower { get; private set; }
+    public float JetpackEfficiency { get; private set; }
+    public float JetpackCharge { get; private set; }
+    public float Speed { get; private set; }
+    public float Booster { get; private set; }
     void SetUpgradeData()
     {
         WeaponPower = baseData.StateUpgradeWeaponDamage(this.SaveData.UpgradeWeaponDamageState);
@@ -91,7 +81,11 @@ Debug.Log("InPlayState : "+InPlayState);
         Speed = baseData.StateUpgradeSpeedStrength(this.SaveData.UpgradeSpeedStrengthState);
         Booster = baseData.StateUpgradeSpeedBooster(this.SaveData.UpgradeSpeedBoosterState);
     }
+    ///////////////////////////////////////////////////////////////////////////////// Upgrade Info END
     ///////////////////////////////////////////////////////////////////////////////// Duck Info
+    public int AddGold { get; private set; }
+    public int killCount { get; private set; }
+    public int KillCountBoss { get; private set; }
     public void PlusAddGold(int gold) { AddGold += gold; }
     public void PlusKillCount(int killCount) { killCount += killCount; }
     public void PlusKillCountBoss(int killCount) { KillCountBoss += killCount; }
@@ -135,6 +129,30 @@ Debug.Log("DuckSP Boss ScriptEffct");
     }
     ///////////////////////////////////////////////////////////////////////////////// Duck Info END
     ///////////////////////////////////////////////////////////////////////////////// GameState Info
+    public enum GameState
+    {
+        Menu,
+        Training,
+        Playing
+    }
+    public enum GameStateInPlay
+    {
+        NoPlay,
+        Start,
+        Play,
+        Pause,
+        End
+    }
+    GameState InGameState;
+    GameStateInPlay InPlayState;
+    public bool isGameStateMenu { get {return InGameState == GameState.Menu;} }
+    public bool isGameStateTraning { get {return InGameState == GameState.Training;} }
+    public bool isGameStatePlaying { get {return InGameState == GameState.Playing;} }
+    public bool isPlayStateNoPlay { get {return InPlayState == GameStateInPlay.NoPlay;} }
+    public bool isPlayStateStart { get {return InPlayState == GameStateInPlay.Start;} }
+    public bool isPlayStatePlay { get {return InPlayState == GameStateInPlay.Play;} }
+    public bool isPlayStatePause { get {return InPlayState == GameStateInPlay.Pause;} }
+    public bool isPlayStateEnd { get {return InPlayState == GameStateInPlay.End;} }
     public void InGameStateChange(GameState state)
     {
         InGameState = state;
@@ -145,11 +163,11 @@ Debug.Log("DuckSP Boss ScriptEffct");
                 Debug.Log("GameState.Menu");
                 break;
             case GameState.Playing : 
-                InPlayState = GameStateInPlay.Start;
+                // InPlayState = GameStateInPlay.Start;
                 Debug.Log("GameState.Playing");
                 break;
             case GameState.Training : 
-                InPlayState = GameStateInPlay.Start;
+                // InPlayState = GameStateInPlay.Start;
                 Debug.Log("GameState.Training");
                 break;
         }
@@ -177,8 +195,8 @@ Debug.Log("DuckSP Boss ScriptEffct");
                 // 플레이어 움직임 금지
                 // 타겟 불가시
                 break;
-            case GameStateInPlay.Stop :
-                Debug.Log("GameStateInPlay.Stop");
+            case GameStateInPlay.End :
+                Debug.Log("GameStateInPlay.End");
                 // 게임 일시중지
                 // UI Activate
                 // 플레이어 움직임 금지

@@ -264,9 +264,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 4897543308175246422, guid: ff3b14fcc8270b844af7fef23b36ea9a, type: 3}
   player: {fileID: 7686779463254618160}
-  uiUP: 150
-  uiDistance: 300
-  isOpen: 0
 --- !u!1 &3576115182523672336
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,7 +500,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6112033157736696851}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 5
@@ -666,6 +663,10 @@ PrefabInstance:
       value: -0.013
       objectReference: {fileID: 0}
     - target: {fileID: 1627689058426451335, guid: 3a623accffed0cd44a7d70f5190b03f7, type: 3}
+      propertyPath: aim
+      value: 
+      objectReference: {fileID: 1284135481419088703, guid: ac6ea9e360bc56b4bb59bad2293bc16f, type: 3}
+    - target: {fileID: 1627689058426451335, guid: 3a623accffed0cd44a7d70f5190b03f7, type: 3}
       propertyPath: recoveryQuantity
       value: 1.6666666
       objectReference: {fileID: 0}
@@ -677,6 +678,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2695500170842160857, guid: 3a623accffed0cd44a7d70f5190b03f7, type: 3}
+      propertyPath: aim
+      value: 
+      objectReference: {fileID: 2923400119412897620, guid: 44fdafe8ef9198346a841494b913da42, type: 3}
     - target: {fileID: 3087087886676891978, guid: 3a623accffed0cd44a7d70f5190b03f7, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.376
@@ -1545,7 +1550,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5815888817995647167, guid: 3a623accffed0cd44a7d70f5190b03f7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3a623accffed0cd44a7d70f5190b03f7, type: 3}
 --- !u!1 &3463672585545428994 stripped
 GameObject:

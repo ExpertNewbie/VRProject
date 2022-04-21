@@ -13,7 +13,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] Transform aim;
     float gravity = -10.0f;
     float currentQuantity;
-    bool isInWater = false;
+    public bool isInWater = false;
     Animator anim;
     float yVelocity = 0;
     CharacterController controller;
