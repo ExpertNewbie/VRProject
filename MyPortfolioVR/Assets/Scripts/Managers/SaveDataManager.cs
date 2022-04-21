@@ -9,7 +9,6 @@ public class SaveDataManager : AbsDataManager<SaveData>
     public int PlayerNumber = 0;
     public SaveDataManager()
     {
-        LoadData();
     }
     public override SaveData LoadData()
     {

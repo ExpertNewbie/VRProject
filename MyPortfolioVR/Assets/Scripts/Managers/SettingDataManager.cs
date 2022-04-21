@@ -8,7 +8,6 @@ public class SettingDataManager : AbsDataManager<SettingData>
 {
     public SettingDataManager()
     {
-        LoadData();
     }
     public override SettingData LoadData()
     {

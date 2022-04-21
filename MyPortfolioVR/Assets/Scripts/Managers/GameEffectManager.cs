@@ -77,8 +77,14 @@ public class GameEffectManager : MonoBehaviour
             go.transform.position = point;
             go.transform.forward = rot;
             go.SetActive(true);
-            ParticleSystem effect = go.GetComponentInChildren<ParticleSystem>();
-            effect.Play();
+            go.GetComponentInChildren<ParticleSystem>().Play();
+            AudioSource se = go.GetComponentInChildren<AudioSource>();
+            EffectController ec = go.GetComponentInChildren<EffectController>();
+            if(se && ec.soundEffectList.Count > 0)
+            {
+                AudioClip sound = ec.soundEffectList[Random.Range(0, ec.soundEffectList.Count-1)];
+                se.PlayOneShot(sound);
+            }
             pool.Add(go);
             return true;
         }

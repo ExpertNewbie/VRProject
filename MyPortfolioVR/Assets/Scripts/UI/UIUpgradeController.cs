@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIUpgradeController : AbsButtonController
 {
@@ -30,13 +29,25 @@ public class UIUpgradeController : AbsButtonController
     {
         Destroy(gameObject);
     }
-    public void ButtonJetpackEfficiency()
+    public void ButtonWeaponDamage()
     {
-        DialogOpen("Jetpack Efficiency");
+        DialogOpen("Weapon Damage");
+    }
+    public void ButtonWeaponEfficiency()
+    {
+        DialogOpen("Weapon Efficiency");
+    }
+    public void ButtonWeaponCharge()
+    {
+        DialogOpen("Weapon Charge");
     }
     public void ButtonJetpackPower()
     {
         DialogOpen("Jetpack Power");
+    }
+    public void ButtonJetpackEfficiency()
+    {
+        DialogOpen("Jetpack Efficiency");
     }
     public void ButtonJetpackCharge()
     {
@@ -50,18 +61,6 @@ public class UIUpgradeController : AbsButtonController
     {
         DialogOpen("Speed Booster");
     }
-    public void ButtonWeaponDamage()
-    {
-        DialogOpen("Weapon Damage");
-    }
-    public void ButtonWeaponEfficiency()
-    {
-        DialogOpen("Weapon Efficiency");
-    }
-    public void ButtonWeaponCharge()
-    {
-        DialogOpen("Weapon Charge");
-    }
     public override void DialogOpen(string info)
     {
         if(!isDialogOpen)
@@ -69,13 +68,14 @@ public class UIUpgradeController : AbsButtonController
             isDialogOpen = true;
             Vector3 uiPosition = transform.position + (transform.forward * -30) + (transform.up * -30);
             cloneUI = Instantiate(uiDialog, uiPosition, transform.rotation);
-            cloneUI.GetComponentInChildren<Text>().text = info + " Upgrade";
             UIDialogController controller = cloneUI.GetComponent<UIDialogController>();
             controller.SetAbsButtonController(this);
+            controller.SetDialogText(info + " Upgrade");
         }
     }
     public override void DialogThrowsInfo(bool yn)
     {
-        isDialogOpen = false;
+        isDialogOpen = yn;
+Debug.Log("Dialog Answer : "+yn);
     }
 }

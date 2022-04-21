@@ -43,7 +43,7 @@ public class UIUpgradeActivator : MonoBehaviour
         }
         activeButtonPanel();
     }
-    private void activeButtonPanel()
+    void activeButtonPanel()
     {
         panelButtonJetpack.SetActive(false);
         panelButtonSpeed.SetActive(false);

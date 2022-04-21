@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class RubberDuckBase : MonoBehaviour
 {
@@ -58,9 +57,17 @@ public class RubberDuckBase : MonoBehaviour
     void Death()
     {
         effectManager.UseEffectPool("DeathEffectList", hitInfo.point, hitInfo.normal * -1);
-        string effectName = FindEffectForName(name);
-        if(effectName != null)
+        stateManager.PlusAddGold(data.Gold);
+        if(!name.Contains("Boss"))
+            stateManager.PlusKillCount(data.Count);
+        else
+            stateManager.PlusKillCountBoss(data.Count);
+        string effectName = FindVisualEffectForName(name);
+        if(data.Effect && effectName != null)
+        {
             effectManager.UseEffectPool(effectName, hitInfo.point, hitInfo.normal * -1);
+            stateManager.DuckScriptEffect(name);
+        }
         audioPlayer.PlayOneShot(deathSound);
         StartCoroutine(DeathEffect());
     }
@@ -72,20 +79,19 @@ public class RubberDuckBase : MonoBehaviour
     }
     void BossSkillActivate()
     {
-        // 보스의 효과 발동
+        if(!name.Contains("Boss"))
+            return;
+        stateManager.DuckScriptEffect(name);
     }
-    string FindEffectForName(string name)
+    string FindVisualEffectForName(string objName) => objName switch
     {
-        switch(name)
-        {
-            case string a when a.Contains("Ink") : return "DuckSPInkList";
-            case string a when a.Contains("Max") : return "DuckSPMaxList";
-            case string a when a.Contains("Half") : return "DuckSPHaldList";
-            case string a when a.Contains("Gold") : return "DuckSPGoldList";
-            case string a when a.Contains("Time") : return "DuckSPTimeList";
-            default : return null;
-        }
-    }
+        var a when a.Contains("Ink") => "DuckSPInkList",
+        var a when a.Contains("Max") => "DuckSPMaxList",
+        var a when a.Contains("Half") => "DuckSPHalfList",
+        var a when a.Contains("Gold") => "DuckSPGoldList",
+        var a when a.Contains("Time") => "DuckSPTimeList",
+        _ => null
+    };
     void OnCollisionEnter(Collision other)
     {
         audioPlayer.PlayOneShot(hitSound);

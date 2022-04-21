@@ -1,20 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class UIActivator : MonoBehaviour
 {
+    GameStateManager stateManager;
     [SerializeField] GameObject UI;
     [SerializeField] Transform player;
-    [SerializeField] float uiUP = 150.0f;
-    [SerializeField] float uiDistance = 300.0f;
-    public bool isOpen = false;
+    float uiUP = 150.0f;
+    float uiDistance = 300.0f;
+    public bool isOpen { get; private set; }
     // Start is called before the first frame update
     void Start()
     {
-        
+        stateManager = GameObject.Find("GameStateManager").GetComponent<GameStateManager>();
+        isOpen = false;
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -22,15 +24,21 @@ public class UIActivator : MonoBehaviour
         {
             if(!isOpen)
             {
+                stateManager.InGameStateInPlayChange(GameStateManager.GameStateInPlay.Pause);
                 isOpen = true;
                 Vector3 uiPosition = transform.position
                 + (transform.forward * uiDistance) + (transform.up * uiUP);
                 Vector3 uiV3 = player.rotation.eulerAngles;
-                Debug.Log(uiV3.y);
                 GameObject clone = Instantiate(UI, uiPosition, Quaternion.Euler(0, uiV3.y, 0));
                 ButtonController bc = clone.GetComponent<ButtonController>();
                 bc.activator = this;
             }
         }
+    }
+    public void UIClose()
+    {
+        isOpen = false;
+        if(stateManager.InPlayState == GameStateManager.GameStateInPlay.Pause)
+            stateManager.InGameStateInPlayChange(GameStateManager.GameStateInPlay.Play);
     }
 }

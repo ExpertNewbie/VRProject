@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.AI;
 
 public class RubberDuckMove : MonoBehaviour
 {
+    GameStateManager stateManager;
     GameEffectManager effectManager;
     GameBaseData.MonsterData data;
     NavMeshAgent agent;
@@ -13,6 +15,7 @@ public class RubberDuckMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        stateManager = GameObject.Find("GameStateManager").GetComponent<GameStateManager>();
         effectManager = GameObject.Find("GameEffectManager").GetComponent<GameEffectManager>();
         data = GameBaseData.Instance().GetDuckData(name);
         agent = GetComponent<NavMeshAgent>();

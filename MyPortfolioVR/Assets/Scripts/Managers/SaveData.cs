@@ -12,7 +12,7 @@ public struct SaveData
         AddGold = 0;
         KillCount = 0;
         KillCountBoss = 0;
-        if(masterLevel)
+        if(!masterLevel)
         {
             HaveGold = 0;
             StageClearState = StageClear.Stage_0;
@@ -27,7 +27,7 @@ public struct SaveData
         }
         else
         {
-            HaveGold = 10000;
+            HaveGold = 100000;
             StageClearState = StageClear.Stage_5;
             UpgradeWeaponDamageState = UpgradeWeaponDamage.Upgrade_5;
             UpgradeWeaponEfficiencyState = UpgradeWeaponEfficiency.Upgrade_5;

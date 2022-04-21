@@ -37,13 +37,15 @@ public class GunController : MonoBehaviour
     }
     public void Shoot()
     {
-        if(!Spend() && reshootCurrentTime < reshootLimitTime)
+        if(!Spend() || reshootCurrentTime < reshootLimitTime)
         {
             return;
         }
         if(effectManager.UseEffectPool("WaterAttackSplashList", gunPoint))
+        {
             reshootCurrentTime = 0;
-        HitTarget();
+            HitTarget();
+        }
     }
     bool Spend()
     {
@@ -104,6 +106,7 @@ public class GunController : MonoBehaviour
     }
     void Charge()
     {
+Debug.Log($"{stateManager.WeaponCharge}");
         currentQuantity = Mathf.Clamp(currentQuantity
                                     + (stateManager.WeaponCharge * Time.deltaTime), 0f, 100.0f);
     }
