@@ -11,6 +11,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] TextMesh textCurrentQuantity;
     [SerializeField] Image imageCurrentQuantity;
     [SerializeField] Transform aim;
+    [SerializeField] EffectActivator jetpackActivator;
     float gravity = -10.0f;
     float currentQuantity;
     public bool isInWater = false;
@@ -53,6 +54,12 @@ public class PlayerMove : MonoBehaviour
             }
             // anim.SetBool("Jetpack", true);
         }
+        if(ARAVRInput.GetDown(ARAVRInput.Button.HandTrigger)
+        || ARAVRInput.GetDown(ARAVRInput.Button.HandTrigger, ARAVRInput.Controller.LTouch))
+                if(jetpackActivator && currentQuantity > 0) jetpackActivator.ActivateEffects();
+        if(ARAVRInput.GetUp(ARAVRInput.Button.HandTrigger)
+        || ARAVRInput.GetUp(ARAVRInput.Button.HandTrigger, ARAVRInput.Controller.LTouch))
+                if(jetpackActivator) jetpackActivator.DeactivateEffects();
         //////////////////////////////////////////////////////////////////// JetPack Use END
         dir.y = yVelocity;
         if(v > 0)

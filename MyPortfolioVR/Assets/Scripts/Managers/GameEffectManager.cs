@@ -4,31 +4,16 @@ using UnityEngine;
 
 public class GameEffectManager : MonoBehaviour
 {
-    [SerializeField] GameObject waterAttackSplash;
-    [SerializeField] GameObject waterHitSplash;
-    [SerializeField] GameObject waterMoveSplash;
-    [SerializeField] GameObject duckRun;
-    [SerializeField] GameObject duckHit;
-    [SerializeField] GameObject duckDeath;
-    [SerializeField] GameObject duckSPInk;
-    [SerializeField] GameObject duckSPMax;
-    [SerializeField] GameObject duckSPHalf;
-    [SerializeField] GameObject duckSPGold;
-    [SerializeField] GameObject duckSPTime;
-    [SerializeField] GameObject duckSPBoss;
-    List<GameObject> waterHitSplashList;
-    List<GameObject> waterAttackSplashList;
-    List<GameObject> waterMoveSplashList;
-    List<GameObject> runEffectList;
-    List<GameObject> hitEffectList;
-    List<GameObject> deathEffectList;
-    List<GameObject> duckSPInkList;
-    List<GameObject> duckSPMaxList;
-    List<GameObject> duckSPHalfList;
-    List<GameObject> duckSPGoldList;
-    List<GameObject> duckSPTimeList;
+    [SerializeField] GameObject waterAttackSplash, waterHitSplash, waterMoveSplash;
+    [SerializeField] GameObject jetpackLaunch;
+    [SerializeField] GameObject duckRun, duckHit, duckDeath;
+    [SerializeField] GameObject duckSPInk, duckSPMax ,duckSPHalf ,duckSPGold, duckSPTime, duckSPBoss;
+    List<GameObject> waterHitSplashList, waterAttackSplashList, waterMoveSplashList;
+    List<GameObject> jetpackLaunchList;
+    List<GameObject> runEffectList, hitEffectList, deathEffectList;
+    List<GameObject> duckSPInkList, duckSPMaxList, duckSPHalfList, duckSPGoldList, duckSPTimeList;
     List<GameObject> duckSPBossList;
-    public int persistEffectPoolCount = 2;
+    public int continuousEffectPoolCount = 2;
     public int waterPoolCount = 8;
     public int duckHitPoolCount = 6;
     public int duckDeathPoolCount = 4;
@@ -38,6 +23,7 @@ public class GameEffectManager : MonoBehaviour
     {
         CreateEffectPool(waterAttackSplash, waterPoolCount, out waterAttackSplashList);
         CreateEffectPool(waterHitSplash, waterPoolCount, out waterHitSplashList);
+        CreateEffectPool(jetpackLaunch, continuousEffectPoolCount, out jetpackLaunchList);
         CreateEffectPool(duckHit, duckHitPoolCount, out hitEffectList);
         CreateEffectPool(duckDeath, duckDeathPoolCount, out deathEffectList);
         //////////////////////////////////////////////////////////////////////// Duck SP Effect
@@ -47,9 +33,9 @@ public class GameEffectManager : MonoBehaviour
         CreateEffectPool(duckSPGold, duckPSPoolCount, out duckSPGoldList);
         CreateEffectPool(duckSPTime, duckPSPoolCount, out duckSPTimeList);
         //////////////////////////////////////////////////////////////////////// Duck SP Effect END
-        // CreateEffectPool(waterHitSplash, persistEffectPoolCount, out waterHitSplashList);
-        // CreateEffectPool(duckRun, persistEffectPoolCount, out runEffectList);
-        // CreateEffectPool(duckSPBoss, duckPSPoolCount, out duckSPBossList);
+        CreateEffectPool(waterMoveSplash, continuousEffectPoolCount, out waterMoveSplashList);
+        CreateEffectPool(duckRun, continuousEffectPoolCount, out runEffectList);
+        CreateEffectPool(duckSPBoss, duckPSPoolCount, out duckSPBossList);
     }
     // Update is called once per frame
     void Update()
@@ -59,6 +45,7 @@ public class GameEffectManager : MonoBehaviour
     void CreateEffectPool(GameObject effectObj, int listCount, out List<GameObject> list)
     {
         list = new List<GameObject>();
+        if(effectObj == null) return;
         for(int i=0; i<listCount; i++)
         {
             GameObject go = Instantiate(effectObj);
@@ -100,8 +87,14 @@ public class GameEffectManager : MonoBehaviour
             go.transform.position = usePoint.position;
             go.transform.rotation = usePoint.rotation;
             go.SetActive(true);
-            ParticleSystem effect = go.GetComponentInChildren<ParticleSystem>();
-            effect.Play();
+            go.GetComponentInChildren<ParticleSystem>().Play();
+            AudioSource se = go.GetComponentInChildren<AudioSource>();
+            EffectController ec = go.GetComponentInChildren<EffectController>();
+            if(se && ec.soundEffectList.Count > 0)
+            {
+                AudioClip sound = ec.soundEffectList[Random.Range(0, ec.soundEffectList.Count-1)];
+                se.PlayOneShot(sound);
+            }
             pool.Add(go);
             return true;
         }

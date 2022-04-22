@@ -24,9 +24,8 @@ public class EffectController : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-    private void OnEnable()
+    void OnEnable()
     {
         currentTime = 0.0f;
-
     }
 }

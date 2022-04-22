@@ -54,7 +54,7 @@ MonoBehaviour:
   duckSPHalf: {fileID: 25543970627390864, guid: 9da388248cc731b4a87bb826c235e1e9, type: 3}
   duckSPGold: {fileID: 25543970627390864, guid: 9da388248cc731b4a87bb826c235e1e9, type: 3}
   duckSPTime: {fileID: 25543970627390864, guid: 9da388248cc731b4a87bb826c235e1e9, type: 3}
-  duckSPBoss: {fileID: 0}
+  duckSPBoss: {fileID: 25543970627390864, guid: 9da388248cc731b4a87bb826c235e1e9, type: 3}
   persistEffectPoolCount: 2
   waterPoolCount: 8
   duckHitPoolCount: 6

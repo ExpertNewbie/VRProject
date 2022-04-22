@@ -101,12 +101,12 @@ public class GameBaseData
     };
     public float StateUpgradeJetpackEfficiency(SaveData.UpgradeJetpackEfficiency state) => state switch
     {
-        SaveData.UpgradeJetpackEfficiency.Upgrade_5 => max / (oneMinute + (6 * 5)), // Use 90 sec
-        SaveData.UpgradeJetpackEfficiency.Upgrade_4 => max / (oneMinute + (6 * 4)),
-        SaveData.UpgradeJetpackEfficiency.Upgrade_3 => max / (oneMinute + (6 * 3)),
-        SaveData.UpgradeJetpackEfficiency.Upgrade_2 => max / (oneMinute + (6 * 2)),
-        SaveData.UpgradeJetpackEfficiency.Upgrade_1 => max / (oneMinute + (6 * 1)),
-        _ => max / oneMinute,                                                       // Use 60 sec
+        SaveData.UpgradeJetpackEfficiency.Upgrade_5 => max / oneMinute,             // Use 60 sec
+        SaveData.UpgradeJetpackEfficiency.Upgrade_4 => max /(oneMinute - (6 * 1)),
+        SaveData.UpgradeJetpackEfficiency.Upgrade_3 => max /(oneMinute - (6 * 2)),
+        SaveData.UpgradeJetpackEfficiency.Upgrade_2 => max /(oneMinute - (6 * 3)),
+        SaveData.UpgradeJetpackEfficiency.Upgrade_1 => max /(oneMinute - (6 * 4)),
+        _ => max / (oneMinute - (6 * 5)),                                           // Use 30 sec
     };
     public float StateUpgradeJetpackCharge(SaveData.UpgradeJetpackCharge state) => state switch
     {

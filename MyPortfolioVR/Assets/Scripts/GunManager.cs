@@ -30,14 +30,15 @@ public class GunManager : MonoBehaviour
     }
     void shootWaterPistol(ARAVRInput.Controller hand)
     {
-        ARAVRInput.PlayVibration(hand);
-        if(hand == ARAVRInput.Controller.RTouch)
+        // ARAVRInput.PlayVibration(hand);
+        switch(hand)
         {
-            controllerRight.Shoot();
-        }
-        else
-        {
-            controllerLeft.Shoot();
+            case ARAVRInput.Controller.RTouch :
+                controllerRight.Shoot();
+                break;
+            default :
+                controllerLeft.Shoot();
+                break;
         }
     }
 }

@@ -9324,6 +9324,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317f07a0a88174e40ac5750f75242b2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundEffectList:
+  - {fileID: 8300000, guid: 26beb69a5baeb3448b0072d2363fe089, type: 3}
+  - {fileID: 8300000, guid: 9678229cb40107647bc8d3fd8e721727, type: 3}
+  - {fileID: 8300000, guid: 2fedde4249d07e24093336bb243a9255, type: 3}
 --- !u!1 &4410287132470046366
 GameObject:
   m_ObjectHideFlags: 0
