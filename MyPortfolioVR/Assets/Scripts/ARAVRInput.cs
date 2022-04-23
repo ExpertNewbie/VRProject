@@ -1,5 +1,5 @@
-#define PC
-// #define Oculus
+// #define PC
+#define Oculus
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -112,6 +112,17 @@ public static class ARAVRInput
 #endif
         }
     }
+    public static Quaternion RHandRotation
+    {
+        get
+        {
+#if PC
+            return Quaternion.identity;
+#elif Oculus
+            return OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTouch);
+#endif
+        }
+    }
     public static Vector3 LHandPosition
     {
         get
@@ -141,6 +152,17 @@ public static class ARAVRInput
             Vector2 direction = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LTouch) * Vector3.forward;
             direction = GetTransform().TransformDirection(direction);
             return direction;
+#endif
+        }
+    }
+    public static Quaternion LHandRotation
+    {
+        get
+        {
+#if PC
+            return Quaternion.identity;
+#elif Oculus
+            return OVRInput.GetLocalControllerRotation(OVRInput.Controller.LTouch);
 #endif
         }
     }

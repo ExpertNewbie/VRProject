@@ -12,6 +12,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] Image imageCurrentQuantity;
     [SerializeField] Transform aim;
     [SerializeField] EffectActivator jetpackActivator;
+    [SerializeField] GameObject head, rightHand, leftHand;
     float gravity = -10.0f;
     float currentQuantity;
     public bool isInWater = false;
@@ -32,6 +33,13 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         ARAVRInput.DrawCrosshair(aim);
+        if(rightHand != null && leftHand != null)
+        {
+            rightHand.transform.localPosition = ARAVRInput.RHandPosition;
+            rightHand.transform.localRotation = ARAVRInput.RHandRotation;
+            leftHand.transform.localPosition = ARAVRInput.LHandPosition;
+            leftHand.transform.localRotation = ARAVRInput.LHandRotation;
+        }
 
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
