@@ -33,12 +33,18 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         ARAVRInput.DrawCrosshair(aim);
-        if(rightHand != null && leftHand != null)
+        if(head != null && rightHand != null && leftHand != null)
         {
             rightHand.transform.localPosition = ARAVRInput.RHandPosition;
             rightHand.transform.localRotation = ARAVRInput.RHandRotation;
             leftHand.transform.localPosition = ARAVRInput.LHandPosition;
             leftHand.transform.localRotation = ARAVRInput.LHandRotation;
+            // Vector3 pos;
+            // Quaternion rot;
+            // if (OVRNodeStateProperties.GetNodeStatePropertyVector3(Node.Head, NodeStatePropertyType.Position, OVRPlugin.Node.Head, OVRPlugin.Step.Render, out pos))
+            //     headPose.position = pos;
+            // if (OVRNodeStateProperties.GetNodeStatePropertyQuaternion(Node.Head, NodeStatePropertyType.Orientation, OVRPlugin.Node.Head, OVRPlugin.Step.Render, out rot))
+            //     headPose.orientation = rot;
         }
 
         float h = Input.GetAxis("Horizontal");
