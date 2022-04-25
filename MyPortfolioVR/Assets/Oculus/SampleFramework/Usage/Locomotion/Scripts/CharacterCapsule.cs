@@ -17,7 +17,7 @@ using System.Collections.Generic;
 [ExecuteInEditMode]
 public class CharacterCapsule : MonoBehaviour
 {
-    private CharacterController _character;
+    private UnityEngine.CharacterController _character;
     private MeshFilter _meshFilter;
 
     private float _height;
@@ -40,7 +40,7 @@ public class CharacterCapsule : MonoBehaviour
 	{
 	    if (_character == null)
 	    {
-	        _character = GetComponentInParent<CharacterController>();
+	        _character = GetComponentInParent<UnityEngine.CharacterController>();
 	        if (_character == null)
 	        {
 	            return;

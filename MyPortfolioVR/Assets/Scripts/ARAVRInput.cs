@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Node = UnityEngine.XR.XRNode;
 
 public static class ARAVRInput
 {
@@ -78,6 +79,36 @@ public static class ARAVRInput
 #endif
             }
             return lHand;
+        }
+    }
+    public static Vector3 HeadPosition
+    {
+        get
+        {
+#if PC
+            return new Vector3(0f, 1.45f, 0.08f);
+#elif Oculus
+            Vector3 pos = Vector3.zero;
+            OVRNodeStateProperties.GetNodeStatePropertyVector3(
+                Node.Head, NodeStatePropertyType.Position,
+                OVRPlugin.Node.Head, OVRPlugin.Step.Render, out pos);
+            return pos;
+#endif
+        }
+    }
+    public static Quaternion HeadRotation
+    {
+        get
+        {
+#if PC
+            return Quaternion.identity;
+#elif Oculus
+            Quaternion rot = Quaternion.identity;
+            OVRNodeStateProperties.GetNodeStatePropertyQuaternion(
+                Node.Head, NodeStatePropertyType.Orientation,
+                OVRPlugin.Node.Head, OVRPlugin.Step.Render, out rot);
+            return rot;
+#endif
         }
     }
     public static Vector3 RHandPosition
