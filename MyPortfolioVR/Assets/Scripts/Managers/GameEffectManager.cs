@@ -54,34 +54,15 @@ public class GameEffectManager : MonoBehaviour
             list.Add(go);
         }
     }
-    public bool UseEffectPool(string poolName, Transform point)
-    {
-        return UseEffectPool<Quaternion>(FindPool(poolName), point.position, point.rotation) != null;
-    }
     public bool UseEffectPool(string poolName, Vector3 point, Vector3 rot)
     {
-        return UseEffectPool<Vector3>(FindPool(poolName), point, rot) != null;
-    }
-    public GameObject UseAndGetEffectPool<T>(string poolName, Vector3 point, T rot)
-    {
-        return UseEffectPool<T>(FindPool(poolName), point, rot);
-    }
-    GameObject UseEffectPool<T>(List<GameObject> pool, Vector3 point, T rot)
-    {
+        List<GameObject> pool = FindPool(poolName);
         if(pool != null && pool.Count > 0)
         {
             GameObject go = pool[0];
             pool.RemoveAt(0);
             go.transform.position = point;
-            switch(rot)
-            {
-                case Quaternion a :
-                    go.transform.rotation = a;
-                    break;
-                case Vector3 b :
-                    go.transform.forward = b;
-                    break;
-            }
+            go.transform.forward = rot;
             go.SetActive(true);
             go.GetComponentInChildren<ParticleSystem>().Play();
             AudioSource se = go.GetComponentInChildren<AudioSource>();
@@ -92,9 +73,32 @@ public class GameEffectManager : MonoBehaviour
                 se.PlayOneShot(sound);
             }
             pool.Add(go);
-            return go;
+            return true;
         }
-        return null;
+        return false;
+    }
+    public bool UseEffectPool(string poolName, Transform usePoint)
+    {
+        List<GameObject> pool = FindPool(poolName);
+        if(pool != null && pool.Count > 0)
+        {
+            GameObject go = pool[0];
+            pool.RemoveAt(0);
+            go.transform.position = usePoint.position;
+            go.transform.rotation = usePoint.rotation;
+            go.SetActive(true);
+            go.GetComponentInChildren<ParticleSystem>().Play();
+            AudioSource se = go.GetComponentInChildren<AudioSource>();
+            EffectController ec = go.GetComponentInChildren<EffectController>();
+            if(se && ec.soundEffectList.Count > 0)
+            {
+                AudioClip sound = ec.soundEffectList[Random.Range(0, ec.soundEffectList.Count-1)];
+                se.PlayOneShot(sound);
+            }
+            pool.Add(go);
+            return true;
+        }
+        return false;
     }
     List<GameObject> FindPool(string methodName) => methodName switch
     {

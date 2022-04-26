@@ -48,7 +48,7 @@ public class GameStateManager : MonoBehaviour
         AddGold = 0;
         killCount = 0;
         KillCountBoss = 0;
-        playerMove = GameObject.Find("Player").GetComponent<PlayerMove>();
+        playerMove = GameObject.Find("Player").GetComponentInChildren<PlayerMove>();
         gunRightController = GameObject.Find("WaterGunRight").GetComponent<GunController>();
         gunLeftController = GameObject.Find("WaterGunLeft").GetComponent<GunController>();
         // Test
