@@ -8,7 +8,7 @@ public class TimerController : MonoBehaviour
     GameStateManager stateManager;
     GameBaseData baseData;
     Text textMesh;
-    public int Limit { get; set; }
+    int limit;
     int TMin = 1;
     float TSec = 5;
     // Start is called before the first frame update
@@ -17,7 +17,7 @@ public class TimerController : MonoBehaviour
         stateManager = GameObject.Find("GameStateManager").GetComponent<GameStateManager>();
         baseData = GameBaseData.Instance();
         textMesh = GetComponent<Text>();
-        InitialSetting();
+        Initializing();
     }
 
     // Update is called once per frame
@@ -26,8 +26,11 @@ public class TimerController : MonoBehaviour
         if(stateManager.isPlayStatePlay)
             RunTimer();
     }
-    public void InitialSetting()
+    void Initializing()
     {
+        limit = stateManager.TimeLimit;
+        TMin = limit / 60;
+        TSec = limit % 60;
         UpdateText();
     }
     void UpdateText()
@@ -52,5 +55,10 @@ public class TimerController : MonoBehaviour
             }
         }
         UpdateText();
+    }
+    public void BonusTime()
+    {
+        if(stateManager.isPlayStatePlay)
+            TMin++;
     }
 }

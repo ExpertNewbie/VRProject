@@ -29,11 +29,17 @@ public class GameBaseData
     }
     ///////////////////////////////////////////////////////////////////////////////// Contruct END
     ///////////////////////////////////////////////////////////////////////////////// Timer
-    Time time;
-    public Time GameTimer()
+    const int initialTime = 60;
+    public int GameTimer(GameStateManager.StageState stage) => stage switch
     {
-        return time;
-    }
+        GameStateManager.StageState.Stage_0 => initialTime * 5,
+        GameStateManager.StageState.Stage_1 => initialTime * 5,
+        GameStateManager.StageState.Stage_2 => initialTime * 5,
+        GameStateManager.StageState.Stage_3 => initialTime * 3,
+        GameStateManager.StageState.Stage_4 => initialTime * 3,
+        GameStateManager.StageState.Stage_5 => initialTime * 6,
+        _ => 0,
+    };
     ///////////////////////////////////////////////////////////////////////////////// Timer END
     ///////////////////////////////////////////////////////////////////////////////// Select Color
     Color ImageColor_Green; Color ImageColor_Yellow; Color ImageColor_Orange; Color ImageColor_Red;

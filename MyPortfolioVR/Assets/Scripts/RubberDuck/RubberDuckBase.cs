@@ -8,12 +8,12 @@ public class RubberDuckBase : MonoBehaviour
     GameStateManager stateManager;
     GameEffectManager effectManager;
     GameBaseData.MonsterData data;
-    [SerializeField] AudioClip normalSound;
+    [SerializeField] List<AudioClip> normalSound = new List<AudioClip>();
     [SerializeField] AudioClip hitSound;
     [SerializeField] AudioClip deathSound;
-    [SerializeField] AudioSource audioPlayer;
-    // float maxHP = 10.0f;
+    AudioSource audioPlayer;
     float currentHP;
+    float lastHP;
     RubberDuckMove moveAgent;
     float reloadTime;
     float currentTime;
@@ -26,14 +26,15 @@ public class RubberDuckBase : MonoBehaviour
         data = GameBaseData.Instance().GetDuckData(name);
         currentHP = data.HP;
         moveAgent = GetComponentInParent<RubberDuckMove>();
+        audioPlayer = GetComponentInParent<AudioSource>();
     }
     // Update is called once per frame
     void Update()
     {
         currentTime += Time.deltaTime;
-        if(currentTime > reloadTime && normalSound != null)
+        if(currentTime > reloadTime && normalSound.Count > 0)
         {
-            audioPlayer.PlayOneShot(normalSound);
+            audioPlayer.PlayOneShot(normalSound[UnityEngine.Random.Range(0, normalSound.Count-1)]);
             reloadTime = UnityEngine.Random.Range(2.0f, 12.0f);
             currentTime = 0;
         }
@@ -41,15 +42,21 @@ public class RubberDuckBase : MonoBehaviour
     public void OnDamaged(float attackPower, RaycastHit hitInfo)
     {
         this.hitInfo = hitInfo;
+        lastHP = currentHP;
         currentHP = Mathf.Clamp(currentHP - attackPower, 0f, data.HP);
         if(currentHP > 0f)
         {
             effectManager.UseEffectPool("HitEffectList", hitInfo.point, hitInfo.normal * -1);
             audioPlayer.PlayOneShot(hitSound);
-            if(!name.Contains("Boss"))
+            if(!data.IsBoss)
                 moveAgent.GotoRandomPoint(true);
             else
-                BossSkillActivate();
+            {
+                float perLast = lastHP / data.HP * 100;
+                float perCurrent = currentHP / data.HP * 100;
+                if(CheckHPPercentage(perLast, perCurrent))
+                    BossSkillActivate();
+            }
             return;
         }
         Death();
@@ -60,7 +67,7 @@ public class RubberDuckBase : MonoBehaviour
         effectManager.UseEffectPool("DeathEffectList", hitInfo.point, hitInfo.normal * -1);
         // Common Effect
         stateManager.PlusAddGold(data.Gold);
-        if(!name.Contains("Boss"))
+        if(!data.IsBoss)
             stateManager.PlusKillCount(data.Count);
         else
             stateManager.PlusKillCountBoss(data.Count);
@@ -81,11 +88,17 @@ public class RubberDuckBase : MonoBehaviour
         yield return null;
         Destroy(gameObject);
     }
+    void OnCollisionEnter(Collision other)
+    {
+        audioPlayer.PlayOneShot(hitSound);
+        moveAgent.GotoRandomPoint(false);
+    }
     void BossSkillActivate()
     {
-        if(!name.Contains("Boss"))
+        if(!data.IsBoss)
             return;
-        stateManager.DuckScriptEffect(name);
+        effectManager.UseEffectPool("DuckSPBossSkillList", hitInfo.point, hitInfo.normal * -1);
+        GetComponentInParent<RubberDuckBossController>().ActivateSkill();
     }
     string FindVisualEffectForName(string objName) => objName switch
     {
@@ -94,11 +107,27 @@ public class RubberDuckBase : MonoBehaviour
         var a when a.Contains("Half") => "DuckSPHalfList",
         var a when a.Contains("Gold") => "DuckSPGoldList",
         var a when a.Contains("Time") => "DuckSPTimeList",
+        var a when a.Contains("Boss") => "DuckSPBossList",
         _ => null
     };
-    void OnCollisionEnter(Collision other)
+    bool CheckHPPercentage(float perLast, float perCurrent)
     {
-        audioPlayer.PlayOneShot(hitSound);
-        moveAgent.GotoRandomPoint(false);
+        switch(perLast)
+        {
+            case float last when last > 70.0f :
+                if(perCurrent <= 70.0f)
+                    return true;
+                return false;
+            case float last when last > 50.0f :
+                if(perCurrent <= 50.0f)
+                    return true;
+                return false;
+            case float last when last > 20.0f :
+                if(perCurrent <= 20.0f)
+                    return true;
+                return false;
+            default :
+                return false;
+        }
     }
 }

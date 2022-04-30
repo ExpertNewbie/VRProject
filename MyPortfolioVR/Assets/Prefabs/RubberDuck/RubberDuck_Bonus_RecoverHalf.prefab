@@ -273,7 +273,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39374cfa4460944b8b602cc061d35b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSound: {fileID: 8300000, guid: b83850309f4a23f49bc9ccc367cdbbc3, type: 3}
+  normalSound:
+  - {fileID: 8300000, guid: ced89a3d15ac0d04a83d5c85384d1484, type: 3}
+  - {fileID: 8300000, guid: e692583f4f64b4448b59fdfc3c58aed7, type: 3}
   hitSound: {fileID: 8300000, guid: b83850309f4a23f49bc9ccc367cdbbc3, type: 3}
   deathSound: {fileID: 8300000, guid: b83850309f4a23f49bc9ccc367cdbbc3, type: 3}
   audioPlayer: {fileID: 2955816930024387900}

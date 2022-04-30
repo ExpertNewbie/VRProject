@@ -12,8 +12,9 @@ public class GameStateManager : MonoBehaviour
     PlayerMove playerMove;
     GunController gunRightController;
     GunController gunLeftController;
+    List<TimerController> timers = new List<TimerController>();
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         settingDataManager = new SettingDataManager();
         this.SettingData = settingDataManager.LoadData();
@@ -21,6 +22,12 @@ public class GameStateManager : MonoBehaviour
         this.SaveData = saveDataManager.LoadData();
         baseData = GameBaseData.Instance();
         ResetGame();
+        // InGameState
+        // InPlayState
+        // stage
+    }
+    void Start()
+    {
     }
     // Update is called once per frame
     void Update()
@@ -51,9 +58,16 @@ public class GameStateManager : MonoBehaviour
         playerMove = GameObject.Find("Player").GetComponentInChildren<PlayerMove>();
         gunRightController = GameObject.Find("WaterGunRight").GetComponent<GunController>();
         gunLeftController = GameObject.Find("WaterGunLeft").GetComponent<GunController>();
+        // Timer Find
+        timers.Add(GameObject.Find("Text_TimerA").GetComponent<TimerController>());
+        timers.Add(GameObject.Find("Text_TimerB").GetComponent<TimerController>());
+        timers.Add(GameObject.Find("Text_TimerC").GetComponent<TimerController>());
         // Test
-        InPlayState = GameStateInPlay.Play; 
+        // InPlayState = GameStateInPlay.Play;
+        // stage = StageState.Stage_2;
+Debug.Log("InGameState : "+InGameState); 
 Debug.Log("InPlayState : "+InPlayState);
+Debug.Log("Stage : "+stage);
     }
     public void Charging(bool isInWater)
     {
@@ -105,22 +119,22 @@ Debug.Log("InPlayState : "+InPlayState);
     };
     void DuckSPMaxScriptEffct()
     {
-Debug.Log("DuckSP Max ScriptEffct");
         playerMove.BonusChargeMax();
         gunRightController.BonusChargeMax();
         gunLeftController.BonusChargeMax();
     }
     void DuckSPHalfScriptEffct()
     {
-Debug.Log("DuckSP Half ScriptEffct");
         playerMove.BonusCharge();
         gunRightController.BonusCharge();
         gunLeftController.BonusCharge();
     }
     void DuckSPTimeScriptEffct()
     {
-        // Time Limit
-Debug.Log("DuckSP Time ScriptEffct");
+        foreach(TimerController controller in timers)
+        {
+            controller.BonusTime();
+        }
     }
     void DuckSPBossScriptEffct()
     {
@@ -143,8 +157,21 @@ Debug.Log("DuckSP Boss ScriptEffct");
         Pause,
         End
     }
+    public enum StageState
+    {
+        NoPlay,
+        Tutorial,
+        Stage_0,
+        Stage_1,
+        Stage_2,
+        Stage_3,
+        Stage_4,
+        Stage_5,
+    }
     GameState InGameState;
     GameStateInPlay InPlayState;
+    StageState stage;
+    public int TimeLimit { get { return baseData.GameTimer(stage); } }
     public bool isGameStateMenu { get {return InGameState == GameState.Menu;} }
     public bool isGameStateTraning { get {return InGameState == GameState.Training;} }
     public bool isGameStatePlaying { get {return InGameState == GameState.Playing;} }
@@ -160,14 +187,17 @@ Debug.Log("DuckSP Boss ScriptEffct");
         {
             case GameState.Menu : 
                 InPlayState = GameStateInPlay.NoPlay;
+                stage = StageState.NoPlay;
                 Debug.Log("GameState.Menu");
                 break;
             case GameState.Playing : 
-                // InPlayState = GameStateInPlay.Start;
+                InPlayState = GameStateInPlay.Start;
+                stage = StageState.Stage_0;
                 Debug.Log("GameState.Playing");
                 break;
             case GameState.Training : 
-                // InPlayState = GameStateInPlay.Start;
+                InPlayState = GameStateInPlay.Start;
+                stage = StageState.Tutorial;
                 Debug.Log("GameState.Training");
                 break;
         }
@@ -181,6 +211,7 @@ Debug.Log("DuckSP Boss ScriptEffct");
                 Debug.Log("GameStateInPlay.NoPlay");
                 break;
             case GameStateInPlay.Start :
+
                 Debug.Log("GameStateInPlay.Start");
                 break;
             case GameStateInPlay.Play :

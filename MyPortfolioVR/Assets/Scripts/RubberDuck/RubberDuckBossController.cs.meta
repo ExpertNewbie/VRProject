@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 96edcedcce8e6604fa71b970f98bc201
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - duckNoraml: {instanceID: 0}
+  - duckSpeedy: {instanceID: 0}
+  - duckHP: {instanceID: 0}
+  - duckInk: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -7,12 +7,13 @@ public class GameEffectManager : MonoBehaviour
     [SerializeField] GameObject waterAttackSplash, waterHitSplash, waterMoveSplash;
     [SerializeField] GameObject jetpackLaunch;
     [SerializeField] GameObject duckRun, duckHit, duckDeath;
-    [SerializeField] GameObject duckSPInk, duckSPMax ,duckSPHalf ,duckSPGold, duckSPTime, duckSPBoss;
+    [SerializeField] GameObject duckSPInk, duckSPMax ,duckSPHalf ,duckSPGold, duckSPTime;
+    [SerializeField] GameObject duckSPBoss, duckSPBossSkill;
     List<GameObject> waterHitSplashList, waterAttackSplashList, waterMoveSplashList;
     List<GameObject> jetpackLaunchList;
     List<GameObject> runEffectList, hitEffectList, deathEffectList;
     List<GameObject> duckSPInkList, duckSPMaxList, duckSPHalfList, duckSPGoldList, duckSPTimeList;
-    List<GameObject> duckSPBossList;
+    List<GameObject> duckSPBossList, duckSPBossSkillList;
     public int continuousEffectPoolCount = 2;
     public int waterPoolCount = 8;
     public int duckHitPoolCount = 6;
@@ -36,6 +37,7 @@ public class GameEffectManager : MonoBehaviour
         CreateEffectPool(waterMoveSplash, continuousEffectPoolCount, out waterMoveSplashList);
         CreateEffectPool(duckRun, continuousEffectPoolCount, out runEffectList);
         CreateEffectPool(duckSPBoss, duckPSPoolCount, out duckSPBossList);
+        CreateEffectPool(duckSPBossSkill, duckPSPoolCount, out duckSPBossSkillList);
     }
     // Update is called once per frame
     void Update()
@@ -113,7 +115,8 @@ public class GameEffectManager : MonoBehaviour
         "DuckSPHalfList" => duckSPHalfList,
         "DuckSPGoldList" => duckSPGoldList,
         "DuckSPTimeList" => duckSPTimeList,
-        "DuckSPBossList" => null,
+        "DuckSPBossList" => duckSPBossList,
+        "DuckSPBossSkillList" => duckSPBossSkillList,
         _ => null
     };
 }
