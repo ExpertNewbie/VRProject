@@ -1,31 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class EffectController : MonoBehaviour
-{
-    float resetTime = 20.0f;
-    float currentTime = 0.0f;
-    public List<AudioClip> soundEffectList = new List<AudioClip>();
-    ParticleSystem effect;
-    // Start is called before the first frame update
-    void Start()
-    {
-        effect = GetComponentInChildren<ParticleSystem>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        currentTime += Time.deltaTime;
-        if(currentTime > resetTime)
-        {
-            gameObject.transform.position = Vector3.down * 10;
-            gameObject.SetActive(false);
-        }
-    }
-    void OnEnable()
-    {
-        currentTime = 0.0f;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:3fb3999fc01d3b1c02c072462004bf130268411839404672ea360ffb67d80fa3
+size 770
