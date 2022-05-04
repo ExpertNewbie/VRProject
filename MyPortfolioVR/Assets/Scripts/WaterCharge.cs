@@ -1,31 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class WaterCharge : MonoBehaviour
-{
-    GameStateManager stateManager;
-    // Start is called before the first frame update
-    void Start()
-    {
-        stateManager = GameObject.Find("GameStateManager").GetComponent<GameStateManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    void OnCollisionEnter(Collision other)
-    {
-Debug.Log("other.gameObject.name : "+other.gameObject.name);
-        if(other.gameObject.name == "Player" && stateManager.isPlayStatePlay)
-            stateManager.Charging(true);
-    }
-    void OnCollisionExit(Collision other)
-    {
-Debug.Log("other.gameObject.name : "+other.gameObject.name);
-        if(other.gameObject.name == "Player" && stateManager.isPlayStatePlay)
-            stateManager.Charging(false);
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:6b05455cddaa391473c758e66e78a67736af6a85e948cdee12bfc2419556f594
+size 884
